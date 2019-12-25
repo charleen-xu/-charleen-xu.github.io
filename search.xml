@@ -6,6 +6,8 @@
     <content><![CDATA[<h2 id="環境配置："><a href="#環境配置：" class="headerlink" title="環境配置："></a>環境配置：</h2><h3 id="1-安裝Node-js"><a href="#1-安裝Node-js" class="headerlink" title="1.安裝Node.js"></a>1.安裝Node.js</h3><p>筆者在安裝來源為Node.js<a href="https://nodejs.org/en/" target="_blank" rel="noopener">官網</a>，嘗試好幾次仍然跳出錯誤。</p>
 <p>依照Hexo官網的指示，輸入下列指令即可</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash</span><br></pre></td></tr></table></figure>
+<a id="more"></a>  #頁面上顯示Readmore
+
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nvm install node</span><br></pre></td></tr></table></figure>
 
 <p>至於為什麼用nvm，可以查看這篇<a href="https://www.onejar99.com/nvm-install-for-unix-like/" target="_blank" rel="noopener">用nvm install node 安裝Node.js</a></p>
@@ -32,7 +34,7 @@
 <p>回到專案文件夾，點開全域配置文件_config.yml，將文件最下方原先空白的deploy，修改如下：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deploy: </span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repository: https://github.com/charleen-xu/charleen-xu.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 <h5 id="提醒：冒號後一定要空格！"><a href="#提醒：冒號後一定要空格！" class="headerlink" title="提醒：冒號後一定要空格！"></a>提醒：冒號後一定要空格！</h5><blockquote>
-<p>不確定repository的url？到Github看看<br>![](<a href="https://i.imgur.com/RAjPqyx.png" target="_blank" rel="noopener">https://i.imgur.com/RAjPqyx.png</a> =400x)</p>
+<p>不確定repository的url？到Github看看<br><img src="https://i.imgur.com/RAjPqyx.png" alt=""></p>
 </blockquote>
 <hr>
 <h4 id="產生靜態檔案-generate"><a href="#產生靜態檔案-generate" class="headerlink" title="產生靜態檔案 generate"></a>產生靜態檔案 generate</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo g  # generate</span><br></pre></td></tr></table></figure>
@@ -97,7 +99,8 @@
     <title>Hello World</title>
     <url>/charleen-xu.github.io/2019/12/18/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><a id="more"></a>  #頁面上顯示Readmore
+<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
