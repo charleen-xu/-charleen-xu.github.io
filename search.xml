@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Hexo裝起來！</title>
-    <url>/charleen-xu.github.io/2019/12/25/Hexo%E8%A3%9D%E8%B5%B7%E4%BE%86%EF%BC%81/</url>
+    <url>charleen-xu.github.io/2019/12/25/Hexo%E8%A3%9D%E8%B5%B7%E4%BE%86%EF%BC%81/</url>
     <content><![CDATA[<h2 id="環境配置："><a href="#環境配置：" class="headerlink" title="環境配置："></a>環境配置：</h2><h3 id="安裝Node-js"><a href="#安裝Node-js" class="headerlink" title="安裝Node.js"></a>安裝Node.js</h3><p>筆者在安裝來源為Node.js<a href="https://nodejs.org/en/" target="_blank" rel="noopener">官網</a>，嘗試好幾次仍然跳出錯誤。</p>
 <p>依照Hexo官網的指示，輸入下列指令即可</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash</span><br></pre></td></tr></table></figure>
@@ -100,7 +100,7 @@
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/charleen-xu.github.io/2019/12/18/hello-world/</url>
+    <url>charleen-xu.github.io/2019/12/18/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><a id="more"></a>  
 <h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
