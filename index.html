@@ -301,6 +301,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://charleen-xu.github.io/charleen-xu.github.io/2020/02/01/%E8%A3%9C%E8%85%A6%E6%B4%9E-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Charleen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/charleen-xu.github.io/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Charleen的學習雜記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/charleen-xu.github.io/2020/02/01/%E8%A3%9C%E8%85%A6%E6%B4%9E-1/" itemprop="url">在controller使用部分Faker的方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-02-01T18:06:34+08:00">
+                2020-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字數統計</span>
+                
+                <span title="字數統計">
+                  166
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">閱讀時長</span>
+                
+                <span title="閱讀時長">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>public function getJson(Faker $faker)<br>{<br>    $client = new \GuzzleHttp\Client();<br>    $res = $client-&gt;request(‘GET’, ‘<a href="http://bookshelf.goodideas-studio.com/api&#39;" target="_blank" rel="noopener">http://bookshelf.goodideas-studio.com/api&#39;</a>);</p>
+<pre><code>$myData = json_decode($res-&gt;getBody()-&gt;getContents(), true);
+
+foreach ($myData as $item) {
+}
+foreach ($item as $data) {
+
+    $addNewBookData = Book::create([&apos;image&apos; =&gt; $data[&apos;image&apos;],
+        &apos;price&apos; =&gt; intval($data[&apos;originPrice&apos;]),
+        &apos;title&apos; =&gt; $data[&apos;name&apos;],
+        &apos;ISBN&apos; =&gt; $data[&apos;ISBN&apos;],
+        &apos;author&apos; =&gt; $faker-&gt;name,
+        &apos;translator&apos; =&gt; $faker-&gt;name,
+        &apos;press&apos; =&gt; $faker-&gt;randomElement([&apos;好想出版社&apos;, &apos;促進讀書出版社&apos;, &apos;好書人人讀出版社&apos;, &apos;我只想賺錢出版社&apos;]),
+        &apos;intro&apos; =&gt; $faker-&gt;realtext(30),
+        &apos;publication_date&apos; =&gt; $faker-&gt;date,
+        &apos;language&apos; =&gt; $faker-&gt;randomElement([&apos;中文&apos;, &apos;簡體中文&apos;, &apos;英文&apos;])
+    ]);
+}</code></pre><p>}</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://charleen-xu.github.io/charleen-xu.github.io/2019/12/25/Hexo%E8%A3%9D%E8%B5%B7%E4%BE%86%EF%BC%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -647,7 +816,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/charleen-xu.github.io/archives/">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -660,7 +829,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/charleen-xu.github.io/tags/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">標籤</span>
               </a>
             </div>

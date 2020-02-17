@@ -85,7 +85,7 @@
 <link href="/charleen-xu.github.io/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="LearnAndLive,Faker,guzzle," />
 
 
 
@@ -101,12 +101,19 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Charleen的學習雜記">
-<meta property="og:url" content="https:&#x2F;&#x2F;charleen-xu.github.io&#x2F;tags&#x2F;Hexo&#x2F;index.html">
+<meta name="description" content="public function getJson(Faker $faker){    $client &#x3D; new \GuzzleHttp\Client();    $res &#x3D; $client-&gt;request(‘GET’, ‘http:&#x2F;&#x2F;bookshelf.goodideas-studio.com&#x2F;api&#39;); $myData &#x3D; json_decode($res-&gt;getB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在controller使用部分Faker的方法">
+<meta property="og:url" content="https:&#x2F;&#x2F;charleen-xu.github.io&#x2F;2020&#x2F;02&#x2F;01&#x2F;%E8%A3%9C%E8%85%A6%E6%B4%9E-1&#x2F;index.html">
 <meta property="og:site_name" content="Charleen的學習雜記">
+<meta property="og:description" content="public function getJson(Faker $faker){    $client &#x3D; new \GuzzleHttp\Client();    $res &#x3D; $client-&gt;request(‘GET’, ‘http:&#x2F;&#x2F;bookshelf.goodideas-studio.com&#x2F;api&#39;); $myData &#x3D; json_decode($res-&gt;getB">
 <meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-02-01T10:06:34.000Z">
+<meta property="article:modified_time" content="2020-02-17T10:16:10.715Z">
 <meta property="article:author" content="Charleen">
+<meta property="article:tag" content="LearnAndLive">
+<meta property="article:tag" content="Faker">
+<meta property="article:tag" content="guzzle">
 <meta name="twitter:card" content="summary">
 
 
@@ -136,13 +143,13 @@
 
 
 
-  <link rel="canonical" href="https://charleen-xu.github.io/tags/Hexo/"/>
+  <link rel="canonical" href="https://charleen-xu.github.io/2020/02/01/補腦洞-1/"/>
 
 
 
 
 
-  <title>標籤: Hexo | Charleen的學習雜記</title>
+  <title>在controller使用部分Faker的方法 | Charleen的學習雜記</title>
   
 
 
@@ -167,7 +174,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -285,54 +292,200 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Hexo<small>標籤</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://charleen-xu.github.io/charleen-xu.github.io/2020/02/01/%E8%A3%9C%E8%85%A6%E6%B4%9E-1/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Charleen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/charleen-xu.github.io/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Charleen的學習雜記">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/charleen-xu.github.io/2019/12/25/Hexo%E8%A3%9D%E8%B5%B7%E4%BE%86%EF%BC%81/" itemprop="url">
-              
-                <span itemprop="name">Hexo裝起來！</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">在controller使用部分Faker的方法</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-12-25T15:06:04+08:00"
-              content="2019-12-25" >
-          12-25
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-02-01T18:06:34+08:00">
+                2020-02-01
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字數統計</span>
+                
+                <span title="字數統計">
+                  166
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">閱讀時長</span>
+                
+                <span title="閱讀時長">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>public function getJson(Faker $faker)<br>{<br>    $client = new \GuzzleHttp\Client();<br>    $res = $client-&gt;request(‘GET’, ‘<a href="http://bookshelf.goodideas-studio.com/api&#39;" target="_blank" rel="noopener">http://bookshelf.goodideas-studio.com/api&#39;</a>);</p>
+<pre><code>$myData = json_decode($res-&gt;getBody()-&gt;getContents(), true);
+
+foreach ($myData as $item) {
+}
+foreach ($item as $data) {
+
+    $addNewBookData = Book::create([&apos;image&apos; =&gt; $data[&apos;image&apos;],
+        &apos;price&apos; =&gt; intval($data[&apos;originPrice&apos;]),
+        &apos;title&apos; =&gt; $data[&apos;name&apos;],
+        &apos;ISBN&apos; =&gt; $data[&apos;ISBN&apos;],
+        &apos;author&apos; =&gt; $faker-&gt;name,
+        &apos;translator&apos; =&gt; $faker-&gt;name,
+        &apos;press&apos; =&gt; $faker-&gt;randomElement([&apos;好想出版社&apos;, &apos;促進讀書出版社&apos;, &apos;好書人人讀出版社&apos;, &apos;我只想賺錢出版社&apos;]),
+        &apos;intro&apos; =&gt; $faker-&gt;realtext(30),
+        &apos;publication_date&apos; =&gt; $faker-&gt;date,
+        &apos;language&apos; =&gt; $faker-&gt;randomElement([&apos;中文&apos;, &apos;簡體中文&apos;, &apos;英文&apos;])
+    ]);
+}</code></pre><p>}</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/charleen-xu.github.io/tags/LearnAndLive/" rel="tag"># LearnAndLive</a>
+          
+            <a href="/charleen-xu.github.io/tags/Faker/" rel="tag"># Faker</a>
+          
+            <a href="/charleen-xu.github.io/tags/guzzle/" rel="tag"># guzzle</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/charleen-xu.github.io/2019/12/25/Hexo%E8%A3%9D%E8%B5%B7%E4%BE%86%EF%BC%81/" rel="next" title="Hexo裝起來！">
+                <i class="fa fa-chevron-left"></i> Hexo裝起來！
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -340,6 +493,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -516,10 +673,10 @@
   
 
   
-    <script type="text/javascript" src="/charleen-xu.github.io/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/charleen-xu.github.io/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/charleen-xu.github.io/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
