@@ -85,7 +85,7 @@
 <link href="/charleen-xu.github.io/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="MacOS," />
 
 
 
@@ -101,14 +101,17 @@
 
 
 
+<meta name="description" content="筆者從Ubuntu跳到macOS後遇到，沒想到版本問題這麼麻煩。結論就是最好是一開始就先把MacOS內建的5.7版本刪除，至少就不會有衝突的問題＠＠">
 <meta property="og:type" content="article">
-<meta property="og:title" content="7">
-<meta property="og:url" content="https:&#x2F;&#x2F;charleen-xu.github.io&#x2F;2020&#x2F;02&#x2F;17&#x2F;7&#x2F;index.html">
+<meta property="og:title" content="macOS安裝mysql碰到的版本安裝問題">
+<meta property="og:url" content="https:&#x2F;&#x2F;charleen-xu.github.io&#x2F;2019&#x2F;12&#x2F;02&#x2F;macOS%E5%AE%89%E8%A3%9Dmysql%E7%A2%B0%E5%88%B0%E7%9A%84%E7%89%88%E6%9C%AC%E5%AE%89%E8%A3%9D%E5%95%8F%E9%A1%8C&#x2F;index.html">
 <meta property="og:site_name" content="Charleen的學習雜記">
+<meta property="og:description" content="筆者從Ubuntu跳到macOS後遇到，沒想到版本問題這麼麻煩。結論就是最好是一開始就先把MacOS內建的5.7版本刪除，至少就不會有衝突的問題＠＠">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-02-17T14:27:42.000Z">
-<meta property="article:modified_time" content="2020-02-17T14:27:42.447Z">
+<meta property="article:published_time" content="2019-12-02T14:27:33.000Z">
+<meta property="article:modified_time" content="2020-02-17T15:15:26.195Z">
 <meta property="article:author" content="Charleen">
+<meta property="article:tag" content="MacOS">
 <meta name="twitter:card" content="summary">
 
 
@@ -138,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="https://charleen-xu.github.io/2020/02/17/7/"/>
+  <link rel="canonical" href="https://charleen-xu.github.io/2019/12/02/macOS安裝mysql碰到的版本安裝問題/"/>
 
 
 
 
 
-  <title>7 | Charleen的學習雜記</title>
+  <title>macOS安裝mysql碰到的版本安裝問題 | Charleen的學習雜記</title>
   
 
 
@@ -301,7 +304,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://charleen-xu.github.io/charleen-xu.github.io/2020/02/17/7/">
+    <link itemprop="mainEntityOfPage" href="https://charleen-xu.github.io/charleen-xu.github.io/2019/12/02/macOS%E5%AE%89%E8%A3%9Dmysql%E7%A2%B0%E5%88%B0%E7%9A%84%E7%89%88%E6%9C%AC%E5%AE%89%E8%A3%9D%E5%95%8F%E9%A1%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Charleen">
@@ -318,7 +321,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">7</h1>
+          <h1 class="post-title" itemprop="name headline">macOS安裝mysql碰到的版本安裝問題</h1>
         
 
         <div class="post-meta">
@@ -330,8 +333,8 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-02-17T22:27:42+08:00">
-                2020-02-17
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2019-12-02T22:27:33+08:00">
+                2019-12-02
               </time>
             
 
@@ -362,7 +365,7 @@
                   <span class="post-meta-item-text">字數統計</span>
                 
                 <span title="字數統計">
-                  0
+                  635
                 </span>
               
 
@@ -378,7 +381,7 @@
                   <span class="post-meta-item-text">閱讀時長</span>
                 
                 <span title="閱讀時長">
-                  1
+                  3
                 </span>
               
             </div>
@@ -399,7 +402,41 @@
       
 
       
-        
+        <p>筆者從Ubuntu跳到macOS後遇到，沒想到版本問題這麼麻煩。<br>結論就是最好是一開始就先把MacOS內建的5.7版本刪除，至少就不會有衝突的問題＠＠</p>
+<a id="more"></a>
+<h3 id="檢查問題"><a href="#檢查問題" class="headerlink" title="檢查問題"></a>檢查問題</h3><ul>
+<li>刪除原本衝突的內建mysql版本–(MacOS內建5.7，用homebrew insatll mysql版本為8.0)</li>
+<li>執行php artisan migrate顯示下列報錯：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Illuminate\Database\QueryException  : SQLSTATE[HY000] [1045] Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password: NO) (SQL: select * from information_schema.tables where table_schema &#x3D; test and table_name &#x3D; migrations and table_type &#x3D; &#39;BASE TABLE&#39;)</span><br><span class="line"></span><br><span class="line"> at &#x2F;Users&#x2F;apple&#x2F;BackGarden&#x2F;vendor&#x2F;laravel&#x2F;framework&#x2F;src&#x2F;Illuminate&#x2F;Database&#x2F;Connection.php:665</span><br><span class="line">   661|         &#x2F;&#x2F; If an exception occurs when attempting to run a query, we&#39;ll format the error</span><br><span class="line">   662|         &#x2F;&#x2F; message to include the bindings with SQL, which will make this exception a</span><br><span class="line">   663|         &#x2F;&#x2F; lot more helpful to the developer instead of just the database&#39;s errors.</span><br><span class="line">   664|         catch (Exception $e) &#123;</span><br><span class="line"> &gt; 665|             throw new QueryException(</span><br><span class="line">   666|                 $query, $this-&gt;prepareBindings($bindings), $e</span><br><span class="line">   667|             );</span><br><span class="line">   668|         &#125;</span><br><span class="line">   669| </span><br><span class="line"></span><br><span class="line"> Exception trace:</span><br><span class="line"></span><br><span class="line"> 1   PDOException::(&quot;SQLSTATE[HY000] [1045] Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password: NO)&quot;)</span><br><span class="line">     &#x2F;Users&#x2F;apple&#x2F;BackGarden&#x2F;vendor&#x2F;laravel&#x2F;framework&#x2F;src&#x2F;Illuminate&#x2F;Database&#x2F;Connectors&#x2F;Connector.php:70</span><br><span class="line"></span><br><span class="line"> 2   PDO::__construct(&quot;mysql:host&#x3D;127.0.0.1;port&#x3D;3306;dbname&#x3D;test&quot;, &quot;root&quot;, &quot;&quot;, [])</span><br><span class="line">     &#x2F;Users&#x2F;apple&#x2F;BackGarden&#x2F;vendor&#x2F;laravel&#x2F;framework&#x2F;src&#x2F;Illuminate&#x2F;Database&#x2F;Connectors&#x2F;Connector.php:70</span><br><span class="line"></span><br><span class="line"> Please use the argument -v to see more details.</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h3 id="為了確定連線問題，新建一個php檔連線"><a href="#為了確定連線問題，新建一個php檔連線" class="headerlink" title="為了確定連線問題，新建一個php檔連線"></a>為了確定連線問題，新建一個php檔連線</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">111.php</span><br><span class="line">&lt;?php</span><br><span class="line">$servername &#x3D; &quot;localhost&quot;;</span><br><span class="line">$username &#x3D; &quot;username&quot;;</span><br><span class="line">$password &#x3D; &quot;password&quot;;</span><br><span class="line">&#x2F;&#x2F; Create connection</span><br><span class="line">$conn &#x3D; new mysqli($servername, $username, $password);</span><br><span class="line">&#x2F;&#x2F; Check connection</span><br><span class="line">if ($conn-&gt;connect_error) &#123;</span><br><span class="line">    die(&quot;Connection failed: &quot; . $conn-&gt;connect_error);</span><br><span class="line">&#125;</span><br><span class="line">echo &quot;Connected successfully&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>執行php 111.php<br>顯示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Charleen@CharleendeMacBook-Pro BackGarden % php ttt.php</span><br><span class="line">PHP Warning:  mysqli::__construct(): Unexpected server response while doing caching_sha2 auth: 109 in &#x2F;Users&#x2F;apple&#x2F;BackGarden&#x2F;ttt.php on line 6</span><br><span class="line"></span><br><span class="line">Warning: mysqli::__construct(): Unexpected server response while doing caching_sha2 auth: 109 in &#x2F;Users&#x2F;apple&#x2F;BackGarden&#x2F;ttt.php on line 6</span><br><span class="line"></span><br><span class="line">關鍵：Unexpected server response while doing caching_sha2 auth</span><br></pre></td></tr></table></figure>
+
+<h3 id="在mysql輸入show-variables-like-‘default-authentication-plugin"><a href="#在mysql輸入show-variables-like-‘default-authentication-plugin" class="headerlink" title="在mysql輸入show variables like ‘default_authentication_plugin;"></a>在mysql輸入show variables like ‘default_authentication_plugin;</h3><p>發現<code>caching_sha2_password</code>，為<strong>mysql8.0後出現的身份驗證插件</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+-------------------------------+-----------------------+</span><br><span class="line">| Variable_name                 | Value                 |</span><br><span class="line">+-------------------------------+-----------------------+</span><br><span class="line">| default_authentication_plugin | caching_sha2_password |</span><br><span class="line">+-------------------------------+-----------------------+</span><br></pre></td></tr></table></figure>
+
+<p>在mysql輸入<code>ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;password&#39;;</code></p>
+<blockquote>
+<p>這裡的password我改成0000</p>
+</blockquote>
+<p>==mysql8的加密方式Laravel不支援(請見來源2)==，導致migrate不成功，必須更改回<code>mysql_native_password</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+-------------------------------+-----------------------+</span><br><span class="line">| Variable_name                 | Value                 |</span><br><span class="line">+-------------------------------+-----------------------+</span><br><span class="line">| default_authentication_plugin | mysql_native_password |</span><br><span class="line">+-------------------------------+-----------------------+</span><br></pre></td></tr></table></figure>
+<h3 id="重啟mysql-server-restart"><a href="#重啟mysql-server-restart" class="headerlink" title="重啟mysql.server restart"></a>重啟<code>mysql.server restart</code></h3><p>確認database connection狀態是否OK，到phpstrom執行<code>php artisan migrate</code></p>
+<p>success!</p>
+<hr>
+<p>參考來源:</p>
+<ol>
+<li>Sarah經驗傳授</li>
+<li>. <a href="https://laracasts.com/discuss/channels/laravel/caching-sha2-password-error-when-running-php-artisan-migrate" target="_blank" rel="noopener">[caching_sha2_password] error when running php artisan migrate</a></li>
+<li><a href="https://1c7.me/mysql-8-connect-error-2018/" target="_blank" rel="noopener">（解决方法）MySQL 8 + macOS 错误：Authentication plugin ‘caching_sha2_password’ cannot be loaded</a></li>
+<li><a href="https://www.twblogs.net/a/5d091671bd9eee1e5c81325c" target="_blank" rel="noopener">Mac下Mysql：Authentication plugin ‘caching_sha2_password’ cannot be loaded</a></li>
+<li><a href="https://parkerro.tw/mysql-8-0-client-problem/" target="_blank" rel="noopener">MySQL 8.0 Client 連線問題</a></li>
+<li><a href="https://www.itread01.com/content/1531994533.html" target="_blank" rel="noopener">MySQL8.0新特性——默認使用caching_sha2_password作為身份驗證插件</a></li>
+</ol>
+
       
     </div>
     
@@ -414,6 +451,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/charleen-xu.github.io/tags/MacOS/" rel="tag"># MacOS</a>
+          
+        </div>
+      
 
       
       
@@ -423,18 +466,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/charleen-xu.github.io/2020/02/17/6/" rel="next" title="6">
-                <i class="fa fa-chevron-left"></i> 6
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/charleen-xu.github.io/2020/02/17/8/" rel="prev" title="8">
-                8 <i class="fa fa-chevron-right"></i>
+              <a href="/charleen-xu.github.io/2019/12/25/Hexo%E8%A3%9D%E8%B5%B7%E4%BE%86%EF%BC%81/" rel="prev" title="Hexo裝起來！">
+                Hexo裝起來！ <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -487,8 +526,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/charleen-xu.github.io/uploads/avatar.jpg"
@@ -503,7 +551,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/charleen-xu.github.io/archives/">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -541,6 +589,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#檢查問題"><span class="nav-number">1.</span> <span class="nav-text">檢查問題</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#為了確定連線問題，新建一個php檔連線"><span class="nav-number">2.</span> <span class="nav-text">為了確定連線問題，新建一個php檔連線</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在mysql輸入show-variables-like-‘default-authentication-plugin"><span class="nav-number">3.</span> <span class="nav-text">在mysql輸入show variables like ‘default_authentication_plugin;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重啟mysql-server-restart"><span class="nav-number">4.</span> <span class="nav-text">重啟mysql.server restart</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
