@@ -301,6 +301,189 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://charleen-xu.github.io/charleen-xu.github.io/2020/12/02/macOS%E5%AE%89%E8%A3%9Dmysql%E7%A2%B0%E5%88%B0%E7%9A%84%E7%89%88%E6%9C%AC%E5%AE%89%E8%A3%9D%E5%95%8F%E9%A1%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Charleen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/charleen-xu.github.io/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Charleen的學習雜記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/charleen-xu.github.io/2020/12/02/macOS%E5%AE%89%E8%A3%9Dmysql%E7%A2%B0%E5%88%B0%E7%9A%84%E7%89%88%E6%9C%AC%E5%AE%89%E8%A3%9D%E5%95%8F%E9%A1%8C/" itemprop="url">macOS安裝mysql碰到的版本安裝問題</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-12-02T22:27:33+08:00">
+                2020-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字數統計</span>
+                
+                <span title="字數統計">
+                  635
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">閱讀時長</span>
+                
+                <span title="閱讀時長">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>參考來源:</p>
+<ol>
+<li>Sarah經驗傳授</li>
+<li>. <a href="https://laracasts.com/discuss/channels/laravel/caching-sha2-password-error-when-running-php-artisan-migrate" target="_blank" rel="noopener">[caching_sha2_password] error when running php artisan migrate</a></li>
+<li><a href="https://1c7.me/mysql-8-connect-error-2018/" target="_blank" rel="noopener">（解决方法）MySQL 8 + macOS 错误：Authentication plugin ‘caching_sha2_password’ cannot be loaded</a></li>
+<li><a href="https://www.twblogs.net/a/5d091671bd9eee1e5c81325c" target="_blank" rel="noopener">Mac下Mysql：Authentication plugin ‘caching_sha2_password’ cannot be loaded</a></li>
+<li><a href="https://parkerro.tw/mysql-8-0-client-problem/" target="_blank" rel="noopener">MySQL 8.0 Client 連線問題</a></li>
+<li><a href="https://www.itread01.com/content/1531994533.html" target="_blank" rel="noopener">MySQL8.0新特性——默認使用caching_sha2_password作為身份驗證插件</a></li>
+</ol>
+<hr>
+<p>筆者從Ubuntu跳到macOS後遇到，沒想到版本問題這麼麻煩。<br>結論就是最好是一開始就先把MacOS內建的5.7版本刪除，至少就不會有衝突的問題＠＠</p>
+<h3 id="檢查問題"><a href="#檢查問題" class="headerlink" title="檢查問題"></a>檢查問題</h3><ul>
+<li>刪除原本衝突的內建mysql版本–(MacOS內建5.7，用homebrew insatll mysql版本為8.0)</li>
+<li>執行php artisan migrate顯示下列報錯：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Illuminate\Database\QueryException  : SQLSTATE[HY000] [1045] Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password: NO) (SQL: select * from information_schema.tables where table_schema &#x3D; test and table_name &#x3D; migrations and table_type &#x3D; &#39;BASE TABLE&#39;)</span><br><span class="line"></span><br><span class="line"> at &#x2F;Users&#x2F;apple&#x2F;BackGarden&#x2F;vendor&#x2F;laravel&#x2F;framework&#x2F;src&#x2F;Illuminate&#x2F;Database&#x2F;Connection.php:665</span><br><span class="line">   661|         &#x2F;&#x2F; If an exception occurs when attempting to run a query, we&#39;ll format the error</span><br><span class="line">   662|         &#x2F;&#x2F; message to include the bindings with SQL, which will make this exception a</span><br><span class="line">   663|         &#x2F;&#x2F; lot more helpful to the developer instead of just the database&#39;s errors.</span><br><span class="line">   664|         catch (Exception $e) &#123;</span><br><span class="line"> &gt; 665|             throw new QueryException(</span><br><span class="line">   666|                 $query, $this-&gt;prepareBindings($bindings), $e</span><br><span class="line">   667|             );</span><br><span class="line">   668|         &#125;</span><br><span class="line">   669| </span><br><span class="line"></span><br><span class="line"> Exception trace:</span><br><span class="line"></span><br><span class="line"> 1   PDOException::(&quot;SQLSTATE[HY000] [1045] Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password: NO)&quot;)</span><br><span class="line">     &#x2F;Users&#x2F;apple&#x2F;BackGarden&#x2F;vendor&#x2F;laravel&#x2F;framework&#x2F;src&#x2F;Illuminate&#x2F;Database&#x2F;Connectors&#x2F;Connector.php:70</span><br><span class="line"></span><br><span class="line"> 2   PDO::__construct(&quot;mysql:host&#x3D;127.0.0.1;port&#x3D;3306;dbname&#x3D;test&quot;, &quot;root&quot;, &quot;&quot;, [])</span><br><span class="line">     &#x2F;Users&#x2F;apple&#x2F;BackGarden&#x2F;vendor&#x2F;laravel&#x2F;framework&#x2F;src&#x2F;Illuminate&#x2F;Database&#x2F;Connectors&#x2F;Connector.php:70</span><br><span class="line"></span><br><span class="line"> Please use the argument -v to see more details.</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h3 id="為了確定連線問題，新建一個php檔連線"><a href="#為了確定連線問題，新建一個php檔連線" class="headerlink" title="為了確定連線問題，新建一個php檔連線"></a>為了確定連線問題，新建一個php檔連線</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">111.php</span><br><span class="line">&lt;?php</span><br><span class="line">$servername &#x3D; &quot;localhost&quot;;</span><br><span class="line">$username &#x3D; &quot;username&quot;;</span><br><span class="line">$password &#x3D; &quot;password&quot;;</span><br><span class="line">&#x2F;&#x2F; Create connection</span><br><span class="line">$conn &#x3D; new mysqli($servername, $username, $password);</span><br><span class="line">&#x2F;&#x2F; Check connection</span><br><span class="line">if ($conn-&gt;connect_error) &#123;</span><br><span class="line">    die(&quot;Connection failed: &quot; . $conn-&gt;connect_error);</span><br><span class="line">&#125;</span><br><span class="line">echo &quot;Connected successfully&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>執行php 111.php<br>顯示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Charleen@CharleendeMacBook-Pro BackGarden % php ttt.php</span><br><span class="line">PHP Warning:  mysqli::__construct(): Unexpected server response while doing caching_sha2 auth: 109 in &#x2F;Users&#x2F;apple&#x2F;BackGarden&#x2F;ttt.php on line 6</span><br><span class="line"></span><br><span class="line">Warning: mysqli::__construct(): Unexpected server response while doing caching_sha2 auth: 109 in &#x2F;Users&#x2F;apple&#x2F;BackGarden&#x2F;ttt.php on line 6</span><br><span class="line"></span><br><span class="line">關鍵：Unexpected server response while doing caching_sha2 auth</span><br></pre></td></tr></table></figure>
+
+<h3 id="在mysql輸入show-variables-like-‘default-authentication-plugin"><a href="#在mysql輸入show-variables-like-‘default-authentication-plugin" class="headerlink" title="在mysql輸入show variables like ‘default_authentication_plugin;"></a>在mysql輸入show variables like ‘default_authentication_plugin;</h3><p>發現<code>caching_sha2_password</code>，為<strong>mysql8.0後出現的身份驗證插件</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+-------------------------------+-----------------------+</span><br><span class="line">| Variable_name                 | Value                 |</span><br><span class="line">+-------------------------------+-----------------------+</span><br><span class="line">| default_authentication_plugin | caching_sha2_password |</span><br><span class="line">+-------------------------------+-----------------------+</span><br></pre></td></tr></table></figure>
+
+<p>在mysql輸入<code>ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;password&#39;;</code></p>
+<blockquote>
+<p>這裡的password我改成0000</p>
+</blockquote>
+<p>==mysql8的加密方式Laravel不支援(請見來源2)==，導致migrate不成功，必須更改回<code>mysql_native_password</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+-------------------------------+-----------------------+</span><br><span class="line">| Variable_name                 | Value                 |</span><br><span class="line">+-------------------------------+-----------------------+</span><br><span class="line">| default_authentication_plugin | mysql_native_password |</span><br><span class="line">+-------------------------------+-----------------------+</span><br></pre></td></tr></table></figure>
+<h3 id="重啟mysql-server-restart"><a href="#重啟mysql-server-restart" class="headerlink" title="重啟mysql.server restart"></a>重啟<code>mysql.server restart</code></h3><p>確認database connection狀態是否OK，到phpstrom執行<code>php artisan migrate</code></p>
+<p>success!</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://charleen-xu.github.io/charleen-xu.github.io/2020/02/17/9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1051,463 +1234,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://charleen-xu.github.io/charleen-xu.github.io/2020/02/17/4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Charleen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/charleen-xu.github.io/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Charleen的學習雜記">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/charleen-xu.github.io/2020/02/17/4/" itemprop="url">4</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">發表於</span>
-              
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-02-17T22:27:33+08:00">
-                2020-02-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字數統計</span>
-                
-                <span title="字數統計">
-                  0
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">閱讀時長</span>
-                
-                <span title="閱讀時長">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://charleen-xu.github.io/charleen-xu.github.io/2020/02/17/3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Charleen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/charleen-xu.github.io/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Charleen的學習雜記">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/charleen-xu.github.io/2020/02/17/3/" itemprop="url">3</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">發表於</span>
-              
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-02-17T22:27:30+08:00">
-                2020-02-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字數統計</span>
-                
-                <span title="字數統計">
-                  0
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">閱讀時長</span>
-                
-                <span title="閱讀時長">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://charleen-xu.github.io/charleen-xu.github.io/2020/02/17/%E5%AF%A6%E4%BD%9C%E4%BA%8C%20Laravel%20%20Botman%E8%A3%BD%E4%BD%9CFacebook%20Messenger%20Chatbot/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Charleen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/charleen-xu.github.io/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Charleen的學習雜記">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/charleen-xu.github.io/2020/02/17/%E5%AF%A6%E4%BD%9C%E4%BA%8C%20Laravel%20%20Botman%E8%A3%BD%E4%BD%9CFacebook%20Messenger%20Chatbot/" itemprop="url">實作二 Laravel + Botman製作Facebook Messenger Chatbot</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">發表於</span>
-              
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-02-17T22:27:27+08:00">
-                2020-02-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字數統計</span>
-                
-                <span title="字數統計">
-                  328
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">閱讀時長</span>
-                
-                <span title="閱讀時長">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="延續實作一，創造Facebook-Messenger-Chatbot"><a href="#延續實作一，創造Facebook-Messenger-Chatbot" class="headerlink" title="延續實作一，創造Facebook Messenger Chatbot"></a>延續實作一，創造Facebook Messenger Chatbot</h3><ul>
-<li><p>設定driver</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php artisan botman:install-driver facebook</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/charleen-xu.github.io/2020/02/17/%E5%AF%A6%E4%BD%9C%E4%BA%8C%20Laravel%20%20Botman%E8%A3%BD%E4%BD%9CFacebook%20Messenger%20Chatbot/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://charleen-xu.github.io/charleen-xu.github.io/2020/02/15/%E8%A7%A3%E6%B1%BALaravel%20CORS%E7%9A%84%E6%96%B9%E6%B3%95--laravel-cors(%E8%88%8A%E7%89%88%E5%B7%B2%E4%B8%8D%E9%81%A9%E7%94%A8%EF%BC%8C%E9%96%8B%E7%99%BC%E8%80%85%E5%B7%B2%E6%9B%B4%E6%96%B0%E8%87%B31.0.1)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1613,6 +1339,321 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/charleen-xu.github.io/2020/02/15/%E8%A7%A3%E6%B1%BALaravel%20CORS%E7%9A%84%E6%96%B9%E6%B3%95--laravel-cors(%E8%88%8A%E7%89%88%E5%B7%B2%E4%B8%8D%E9%81%A9%E7%94%A8%EF%BC%8C%E9%96%8B%E7%99%BC%E8%80%85%E5%B7%B2%E6%9B%B4%E6%96%B0%E8%87%B31.0.1)/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://charleen-xu.github.io/charleen-xu.github.io/2020/02/10/%E5%AF%A6%E4%BD%9C%E4%BA%8C%20Laravel%20%20Botman%E8%A3%BD%E4%BD%9CFacebook%20Messenger%20Chatbot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Charleen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/charleen-xu.github.io/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Charleen的學習雜記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/charleen-xu.github.io/2020/02/10/%E5%AF%A6%E4%BD%9C%E4%BA%8C%20Laravel%20%20Botman%E8%A3%BD%E4%BD%9CFacebook%20Messenger%20Chatbot/" itemprop="url">實作二 Laravel + Botman製作Facebook Messenger Chatbot</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-02-10T22:27:27+08:00">
+                2020-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字數統計</span>
+                
+                <span title="字數統計">
+                  328
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">閱讀時長</span>
+                
+                <span title="閱讀時長">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="延續實作一，創造Facebook-Messenger-Chatbot"><a href="#延續實作一，創造Facebook-Messenger-Chatbot" class="headerlink" title="延續實作一，創造Facebook Messenger Chatbot"></a>延續實作一，創造Facebook Messenger Chatbot</h3><ul>
+<li>設定driver</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php artisan botman:install-driver facebook</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/charleen-xu.github.io/2020/02/10/%E5%AF%A6%E4%BD%9C%E4%BA%8C%20Laravel%20%20Botman%E8%A3%BD%E4%BD%9CFacebook%20Messenger%20Chatbot/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://charleen-xu.github.io/charleen-xu.github.io/2020/02/10/Laravel%20+%20Botman%E8%A3%BD%E4%BD%9CMessenger%20Chatbot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Charleen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/charleen-xu.github.io/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Charleen的學習雜記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/charleen-xu.github.io/2020/02/10/Laravel%20+%20Botman%E8%A3%BD%E4%BD%9CMessenger%20Chatbot/" itemprop="url">實作一 Laravel + Botman製作Messenger Chatbot</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-02-10T15:27:21+08:00">
+                2020-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字數統計</span>
+                
+                <span title="字數統計">
+                  306
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">閱讀時長</span>
+                
+                <span title="閱讀時長">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>[文件] <a href="https://botman.io/2.0/botman-studio" target="_blank" rel="noopener">BotMan Studio</a></p>
+<p>[參考來源]：<br><a href="https://morioh.com/p/a70505b642e4" target="_blank" rel="noopener">Building a Chatbot with Botman and Laravel</a><br><a href="https://chatbotsmagazine.com/build-a-facebook-messenger-chatbot-in-laravel-with-botman-studio-2-0-b84c0855f51f" target="_blank" rel="noopener">Build a Facebook Messenger Chatbot in Laravel with BotMan Studio 2.0</a></p>
+<p>版本：<br>PHP 7.3.14 </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/charleen-xu.github.io/2020/02/10/Laravel%20+%20Botman%E8%A3%BD%E4%BD%9CMessenger%20Chatbot/#more" rel="contents">
               閱讀全文 &raquo;
             </a>
           </div>
@@ -1853,7 +1894,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/charleen-xu.github.io/archives/">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
@@ -1866,7 +1907,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/charleen-xu.github.io/tags/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">標籤</span>
               </a>
             </div>
