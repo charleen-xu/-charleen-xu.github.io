@@ -31,7 +31,7 @@
       <link href="/charleen-xu.github.io/2020/02/04/orderby()%20%E3%80%81%20take()%20%E7%94%A8%E6%B3%95/"/>
       <url>/charleen-xu.github.io/2020/02/04/orderby()%20%E3%80%81%20take()%20%E7%94%A8%E6%B3%95/</url>
       
-        <content type="html"><![CDATA[<h2 id="oderby-排序"><a href="#oderby-排序" class="headerlink" title="oderby():排序"></a>oderby():排序</h2><p>ASC 由小往大的順序列出，而 DESC 由大往小的順序列出。 如果兩者沒有被寫出就會用 ASC。</p><h2 id="take-指定數量"><a href="#take-指定數量" class="headerlink" title="take():指定數量"></a>take():指定數量</h2><pre><code class="php">$userHistoryRecords = Searches::where(<span class="string">'user_id'</span>,$user_id)-&gt;orderBy(<span class="string">'created_at'</span>, <span class="string">'asc'</span>)-&gt;take(<span class="number">5</span>)-&gt;get();</code></pre>]]></content>
+        <content type="html"><![CDATA[<h3 id="oderby-排序"><a href="#oderby-排序" class="headerlink" title="oderby():排序"></a>oderby():排序</h3><p>ASC 由小往大的順序列出，而 DESC 由大往小的順序列出。 如果兩者沒有被寫出就會用 ASC。</p><h3 id="take-指定數量"><a href="#take-指定數量" class="headerlink" title="take():指定數量"></a>take():指定數量</h3><pre><code class="php">$userHistoryRecords = Searches::where(<span class="string">'user_id'</span>,$user_id)-&gt;orderBy(<span class="string">'created_at'</span>, <span class="string">'asc'</span>)-&gt;take(<span class="number">5</span>)-&gt;get();</code></pre>]]></content>
       
       
       
