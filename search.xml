@@ -4,6 +4,120 @@
   
     
     <entry>
+      <title>9</title>
+      <link href="/charleen-xu.github.io/2020/02/17/9/"/>
+      <url>/charleen-xu.github.io/2020/02/17/9/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>8</title>
+      <link href="/charleen-xu.github.io/2020/02/17/8/"/>
+      <url>/charleen-xu.github.io/2020/02/17/8/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>7</title>
+      <link href="/charleen-xu.github.io/2020/02/17/7/"/>
+      <url>/charleen-xu.github.io/2020/02/17/7/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>6</title>
+      <link href="/charleen-xu.github.io/2020/02/17/6/"/>
+      <url>/charleen-xu.github.io/2020/02/17/6/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>5</title>
+      <link href="/charleen-xu.github.io/2020/02/17/5/"/>
+      <url>/charleen-xu.github.io/2020/02/17/5/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>4</title>
+      <link href="/charleen-xu.github.io/2020/02/17/4/"/>
+      <url>/charleen-xu.github.io/2020/02/17/4/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>3</title>
+      <link href="/charleen-xu.github.io/2020/02/17/3/"/>
+      <url>/charleen-xu.github.io/2020/02/17/3/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>實作二 Laravel + Botman製作Facebook Messenger Chatbot</title>
+      <link href="/charleen-xu.github.io/2020/02/17/%E5%AF%A6%E4%BD%9C%E4%BA%8C%20Laravel%20%20Botman%E8%A3%BD%E4%BD%9CFacebook%20Messenger%20Chatbot/"/>
+      <url>/charleen-xu.github.io/2020/02/17/%E5%AF%A6%E4%BD%9C%E4%BA%8C%20Laravel%20%20Botman%E8%A3%BD%E4%BD%9CFacebook%20Messenger%20Chatbot/</url>
+      
+        <content type="html"><![CDATA[<h3 id="延續實作一，創造Facebook-Messenger-Chatbot"><a href="#延續實作一，創造Facebook-Messenger-Chatbot" class="headerlink" title="延續實作一，創造Facebook Messenger Chatbot"></a>延續實作一，創造Facebook Messenger Chatbot</h3><ul><li><p>設定driver</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php artisan botman:install-driver facebook</span></span><br></pre></td></tr></table></figure><a id="more"></a></li><li><p>查看是否如下圖被打勾</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php artisan botman:list-drivers</span></span><br></pre></td></tr></table></figure><p><img src="https://i.imgur.com/yO9v6Bx.png" alt=""></p></li></ul><h4 id="你需要這三個參數，請跟隨接下來的指示："><a href="#你需要這三個參數，請跟隨接下來的指示：" class="headerlink" title="你需要這三個參數，請跟隨接下來的指示："></a>你需要這三個參數，請跟隨接下來的指示：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FACEBOOK_TOKEN &#x3D; YOUR_APP_FACEBOOK_PAGE_TOKEN</span><br><span class="line">FACEBOOK_APP_SECRET &#x3D; YOUR_APP_SECRET</span><br><span class="line">FACEBOOK_VERIFICATION &#x3D; YOUR_VERIFICATION</span><br></pre></td></tr></table></figure><h4 id="設置Facebook-App"><a href="#設置Facebook-App" class="headerlink" title="設置Facebook App"></a>設置Facebook App</h4><ul><li><p>首先，你需要有新建一個用來測試的粉絲專頁</p></li><li><p>接著進入 <a href="https://developers.facebook.com/?locale=zh_TW" target="_blank" rel="noopener">https://developers.facebook.com/?locale=zh_TW</a><br><img src="https://i.imgur.com/5ab8hAC.png" alt=""></p></li><li><p>輸入名稱與連絡電子郵件<br><img src="https://i.imgur.com/CEphnai.png" alt=""></p></li><li><p>選擇Messenger-&gt;按下設定<br><img src="https://i.imgur.com/CaTvlA3.png" alt=""></p></li><li><p>產品-&gt;Messenger-&gt;設定-&gt;按下新增粉絲專頁<br><img src="https://i.imgur.com/HIzEycb.png" alt=""></p></li><li><p>以你的身份繼續認證，選擇你建立的測試粉絲專頁<br><img src="https://i.imgur.com/qpQTLTZ.png" alt=""></p></li><li><p>產品-&gt;Messenger-&gt;設定-&gt;按下產生權杖：得到FACEBOOK_TOKEN = YOUR_APP_FACEBOOK_PAGE_TOKEN<br><img src="https://i.imgur.com/KM7LMcx.png" alt=""></p></li><li><p>左側設定-&gt;基本資料：得到FACEBOOK_APP_SECRET = YOUR_APP_SECRET</p><ul><li>將前面反向代理拿到的ngrok暫時 https 貼到應用程式網域(server必須要提供https)</li></ul></li></ul><p><img src="https://i.imgur.com/PftAuvg.png" alt=""></p><ul><li>產品-&gt;Messenger-&gt;設定-&gt;點選編輯回呼網址：得到FACEBOOK_VERIFICATION = YOUR_VERIFICATION</li></ul><p><img src="https://i.imgur.com/KWibZL1.png" alt=""></p><h3 id="注意"><a href="#注意" class="headerlink" title="[注意]"></a>[注意]</h3><p>原本編輯粉絲專頁訂閱位在設置webhook下方，改版後變成要先新增webhook，完成此步驟後會出現右下方的新增訂閱。</p><blockquote><p>一直找不到才發現改版了qq<br><img src="https://i.imgur.com/n4f8sAo.png" alt=""></p></blockquote><ul><li><p>勾選訂閱欄位的messages 與 messaging_postbacks<br><img src="https://i.imgur.com/LhpCVBb.png" alt=""></p></li><li><p>設定完成<br><img src="https://i.imgur.com/Cx4rEnP.png" alt=""></p></li></ul><h4 id="將這三個必要的環境變數放入-env"><a href="#將這三個必要的環境變數放入-env" class="headerlink" title="將這三個必要的環境變數放入.env"></a>將這三個必要的環境變數放入.env</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FACEBOOK_TOKEN &#x3D; ＊＊＊＊＊＊</span><br><span class="line">FACEBOOK_APP_SECRET &#x3D; ＊＊＊＊＊＊</span><br><span class="line">FACEBOOK_VERIFICATION &#x3D; ＊＊＊＊＊＊</span><br></pre></td></tr></table></figure><h3 id="測試-Charleentestbotman"><a href="#測試-Charleentestbotman" class="headerlink" title="測試 Charleentestbotman"></a>測試 Charleentestbotman</h3><p><img src="https://i.imgur.com/l05hjpB.png" alt=""></p><p>:smile: 終於成功啦！！！！！</p><p><img src="https://i.imgur.com/4iUp0N5.png" alt=""></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Laravel </tag>
+            
+            <tag> chatbot </tag>
+            
+            <tag> Facebook Messenger Chatbot </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>解決Laravel CORS的方法--laravel-cors(舊版已不適用，開發者已更新至1.0.1)</title>
       <link href="/charleen-xu.github.io/2020/02/15/%E8%A7%A3%E6%B1%BALaravel%20CORS%E7%9A%84%E6%96%B9%E6%B3%95--laravel-cors(%E8%88%8A%E7%89%88%E5%B7%B2%E4%B8%8D%E9%81%A9%E7%94%A8%EF%BC%8C%E9%96%8B%E7%99%BC%E8%80%85%E5%B7%B2%E6%9B%B4%E6%96%B0%E8%87%B31.0.1)/"/>
       <url>/charleen-xu.github.io/2020/02/15/%E8%A7%A3%E6%B1%BALaravel%20CORS%E7%9A%84%E6%96%B9%E6%B3%95--laravel-cors(%E8%88%8A%E7%89%88%E5%B7%B2%E4%B8%8D%E9%81%A9%E7%94%A8%EF%BC%8C%E9%96%8B%E7%99%BC%E8%80%85%E5%B7%B2%E6%9B%B4%E6%96%B0%E8%87%B31.0.1)/</url>
@@ -86,6 +200,27 @@
             <tag> Faker </tag>
             
             <tag> guzzle </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>實作一 Laravel + Botman製作Messenger Chatbot</title>
+      <link href="/charleen-xu.github.io/2020/01/27/Laravel%20+%20Botman%E8%A3%BD%E4%BD%9CMessenger%20Chatbot/"/>
+      <url>/charleen-xu.github.io/2020/01/27/Laravel%20+%20Botman%E8%A3%BD%E4%BD%9CMessenger%20Chatbot/</url>
+      
+        <content type="html"><![CDATA[<p>[文件] <a href="https://botman.io/2.0/botman-studio" target="_blank" rel="noopener">BotMan Studio</a></p><p>[參考來源]：<br><a href="https://morioh.com/p/a70505b642e4" target="_blank" rel="noopener">Building a Chatbot with Botman and Laravel</a><br><a href="https://chatbotsmagazine.com/build-a-facebook-messenger-chatbot-in-laravel-with-botman-studio-2-0-b84c0855f51f" target="_blank" rel="noopener">Build a Facebook Messenger Chatbot in Laravel with BotMan Studio 2.0</a></p><p>版本：<br>PHP 7.3.14 </p><a id="more"></a><ul><li>實作一 <a href="https://kanchengzxdfgcv.blogspot.com/2019/03/php-botman.html" target="_blank" rel="noopener">PHP 聊天機器人記錄 - Botman</a><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> composer global require <span class="string">"botman/installer"</span> (失敗，就算了)</span></span><br></pre></td></tr></table></figure></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">vcomposer create-project --prefer-dist botman/studio 專案名稱</span></span><br></pre></td></tr></table></figure><ul><li>打開專案-&gt;<code>route</code>下的<code>botman.php</code></li></ul><p><img src="https://i.imgur.com/klWGXx2.png" alt=""></p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Controllers</span>\<span class="title">BotManController</span>;</span><br><span class="line"></span><br><span class="line">$botman = resolve(<span class="string">'botman'</span>);</span><br><span class="line"></span><br><span class="line">$botman-&gt;hears(<span class="string">'Hi'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($bot)</span> </span>&#123; <span class="comment">#聽到</span></span><br><span class="line">    $bot-&gt;reply(<span class="string">'Hello!'</span>); <span class="comment">#回覆</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$botman-&gt;hears(<span class="string">'今天'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($bot)</span> </span>&#123;</span><br><span class="line">    $bot-&gt;reply(<span class="string">'哦對'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">#自行複製輸入</span></span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line"></span><br><span class="line">$botman-&gt;hears(<span class="string">'Start conversation'</span>, BotManController::class.<span class="string">'@startConversation'</span>);</span><br></pre></td></tr></table></figure><ul><li>到<code>BotManController.php</code>，我們來修改一下<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $botman = app(<span class="string">'botman'</span>);</span><br><span class="line"></span><br><span class="line">        $botman-&gt;hears(<span class="string">'&#123;message&#125;'</span>, <span class="function"><span class="keyword">function</span><span class="params">($botman, $message)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> ($message == <span class="string">'你好'</span>) &#123;</span><br><span class="line">                <span class="keyword">$this</span>-&gt;askName($botman);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        $botman-&gt;listen();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">askName</span><span class="params">($botman)</span> #新增</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $botman-&gt;ask(<span class="string">'Hello! 請報上大名'</span>, <span class="function"><span class="keyword">function</span><span class="params">(Answer $answer)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            $name = $answer-&gt;getText();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">$this</span>-&gt;say($name . <span class="string">'今天過得如何？可以跟我分享嗎 '</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li><li>啟動本地server <a href="http://127.0.0.1:8000" target="_blank" rel="noopener">http://127.0.0.1:8000</a><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php artisan serve</span></span><br></pre></td></tr></table></figure></li></ul><h2 id="ngrok-把localhost-對應到-https-public-domain-的服務"><a href="#ngrok-把localhost-對應到-https-public-domain-的服務" class="headerlink" title="ngrok : 把localhost 對應到 https public domain 的服務"></a>ngrok : 把localhost 對應到 https public domain 的服務</h2><p>[ Ngrok 文件 ] <a href="https://ngrok.com/docs" target="_blank" rel="noopener">Documentation</a></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ngrok http 8000</span></span><br></pre></td></tr></table></figure><ul><li><p>得到暫時的https public domain(反白處)<br><img src="https://i.imgur.com/bnaFMRv.png" alt=""></p></li><li><p>也可以在網頁上查看，ngrok提供Inspecting your traffic，輸入<code>http://localhost:4040</code><br><img src="https://i.imgur.com/PfN05KF.png" alt=""></p></li><li><p>首頁：<br><img src="https://i.imgur.com/bIGSZMp.jpg" alt=""></p></li></ul><p>輸入：<code>https://068b3aa9.ngrok.io/botman/tinker</code></p><ul><li>在空白欄位處開始測試<br><img src="https://i.imgur.com/Ksr4YZ1.png" alt=""></li></ul><p>成功返回訊息！</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Laravel </tag>
+            
+            <tag> chatbot </tag>
             
         </tags>
       
