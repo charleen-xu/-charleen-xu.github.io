@@ -1,149 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>在controller使用部分Faker的方法</title>
-    <url>/charleen-xu.github.io/2020/02/01/%E8%A3%9C%E8%85%A6%E6%B4%9E-1/</url>
-    <content><![CDATA[<p>public function getJson(Faker $faker)<br>{<br>    $client = new \GuzzleHttp\Client();<br>    $res = $client-&gt;request(‘GET’, ‘<a href="http://bookshelf.goodideas-studio.com/api&#39;" target="_blank" rel="noopener">http://bookshelf.goodideas-studio.com/api&#39;</a>);</p>
-<pre><code>$myData = json_decode($res-&gt;getBody()-&gt;getContents(), true);
-
-foreach ($myData as $item) {
-}
-foreach ($item as $data) {
-
-    $addNewBookData = Book::create([&apos;image&apos; =&gt; $data[&apos;image&apos;],
-        &apos;price&apos; =&gt; intval($data[&apos;originPrice&apos;]),
-        &apos;title&apos; =&gt; $data[&apos;name&apos;],
-        &apos;ISBN&apos; =&gt; $data[&apos;ISBN&apos;],
-        &apos;author&apos; =&gt; $faker-&gt;name,
-        &apos;translator&apos; =&gt; $faker-&gt;name,
-        &apos;press&apos; =&gt; $faker-&gt;randomElement([&apos;好想出版社&apos;, &apos;促進讀書出版社&apos;, &apos;好書人人讀出版社&apos;, &apos;我只想賺錢出版社&apos;]),
-        &apos;intro&apos; =&gt; $faker-&gt;realtext(30),
-        &apos;publication_date&apos; =&gt; $faker-&gt;date,
-        &apos;language&apos; =&gt; $faker-&gt;randomElement([&apos;中文&apos;, &apos;簡體中文&apos;, &apos;英文&apos;])
-    ]);
-}</code></pre><p>}</p>
-]]></content>
-      <tags>
-        <tag>LearnAndLive</tag>
-        <tag>Faker</tag>
-        <tag>guzzle</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo裝起來！</title>
-    <url>/charleen-xu.github.io/2019/12/25/Hexo%E8%A3%9D%E8%B5%B7%E4%BE%86%EF%BC%81/</url>
-    <content><![CDATA[<h2 id="環境配置："><a href="#環境配置：" class="headerlink" title="環境配置："></a>環境配置：</h2><h3 id="安裝Node-js"><a href="#安裝Node-js" class="headerlink" title="安裝Node.js"></a>安裝Node.js</h3><p>筆者在安裝來源為Node.js<a href="https://nodejs.org/en/" target="_blank" rel="noopener">官網</a>，嘗試好幾次仍然跳出錯誤。</p>
-<p>依照Hexo官網的指示，輸入下列指令即可</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash</span><br></pre></td></tr></table></figure>
-<a id="more"></a>  
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nvm install node</span><br></pre></td></tr></table></figure>
-
-<p>至於為什麼用nvm，可以查看這篇<a href="https://www.onejar99.com/nvm-install-for-unix-like/" target="_blank" rel="noopener">用nvm install node 安裝Node.js</a></p>
-<h3 id="安裝Hexo-Git"><a href="#安裝Hexo-Git" class="headerlink" title="安裝Hexo Git"></a>安裝Hexo Git</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<p>如果此時報錯提示為<strong>gyp: No Xcode or CLT version detected!(未檢測到Xcode或CLT版本)</strong></p>
-<p>就筆者的當時的處理方式有二：</p>
-<ul>
-<li><p>首先是檢查MacOS是否更新到最新版本，但更新完後輸入上面的指令依然報錯。</p>
-</li>
-<li><p>第二是我原先沒有安裝Xcode，但安裝後又顯示上述報錯，這不是很奇怪？搜尋了一下發現有蠻多人面臨相同問題，大多數的解決方式為<code>sudo xcode-select --install</code>，<a href="https://juejin.im/post/5c73986de51d450dfc6f30e8" target="_blank" rel="noopener">這篇</a>提到可能是Mac升級後，缺了xcode 的CLI 工具，但我輸入這個指令還是有報錯的提示。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[報錯]xcode-select: error: command line tools are already installed, use &quot;Software Update&quot; to install updates</span><br></pre></td></tr></table></figure>
-<p>最後是依據<a href="https://stackoverflow.com/questions/34617452/how-to-update-xcode-from-command-line" target="_blank" rel="noopener">這篇</a>執行<code>sudo rm -rf /Library/Developer/CommandLineTools</code>，移除後<code>xcode-select --install</code>重新執行就成功了。</p>
-</li>
-</ul>
-<p><strong>報錯解決後，重新執行</strong><code>npm install hexo-deployer-git --save</code></p>
-<h3 id="安裝Hexo"><a href="#安裝Hexo" class="headerlink" title="安裝Hexo"></a>安裝Hexo</h3><ul>
-<li><code>npm install hexo-cli -g</code> 或 <code>sudo npm install -g hexo-cli</code></li>
-<li><code>hexo init [部落格名稱]</code></li>
-<li><code>cd [部落格名稱]</code>  # 移至剛創建的資料夾</li>
-<li><code>npm install</code>        # 安裝相關套件</li>
-</ul>
-<h3 id="將Hexo配置到Github上"><a href="#將Hexo配置到Github上" class="headerlink" title="將Hexo配置到Github上"></a>將Hexo配置到Github上</h3><p>登入Github新增一個Repositories，名稱必須為<code>Github帳號名.github.io</code></p>
-<p>回到專案文件夾，點開全域配置文件_config.yml，將文件最下方原先空白的deploy，修改如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deploy: </span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repository: https://github.com/charleen-xu/charleen-xu.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<h5 id="提醒：冒號後一定要空格！"><a href="#提醒：冒號後一定要空格！" class="headerlink" title="提醒：冒號後一定要空格！"></a>提醒：冒號後一定要空格！</h5><blockquote>
-<p>不確定repository的url？到Github看看<br><img src="https://i.imgur.com/RAjPqyx.png" alt=""></p>
-</blockquote>
-<hr>
-<h4 id="產生靜態檔案-generate"><a href="#產生靜態檔案-generate" class="headerlink" title="產生靜態檔案 generate"></a>產生靜態檔案 generate</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo g  # generate</span><br></pre></td></tr></table></figure>
-<p>配置完成後的文章更新方式，參考<a href="https://winney07.github.io/2018/08/02/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/" target="_blank" rel="noopener">在Hexo博客中发布文章</a></p>
-<h4 id="新增Hexo文章"><a href="#新增Hexo文章" class="headerlink" title="新增Hexo文章"></a>新增Hexo文章</h4><blockquote>
-<p>路徑：專案文件夾/source/_posts</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo new 文章名稱</span><br></pre></td></tr></table></figure>
-<p>打開新增該文件， 使用Markdown語法編輯內文</p>
-<h5 id="範例："><a href="#範例：" class="headerlink" title="範例："></a>範例：</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章標題</span><br><span class="line">date: 自動產生日期與時間</span><br><span class="line">tags: 自定義標籤</span><br><span class="line">---</span><br><span class="line">## 內容標題</span><br><span class="line">內文</span><br><span class="line"></span><br><span class="line">&lt;!--more--&gt;  #頁面上顯示Readmore</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="本地測試，啟動server"><a href="#本地測試，啟動server" class="headerlink" title="本地測試，啟動server"></a>本地測試，啟動server</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo s  # server</span><br></pre></td></tr></table></figure>
-
-<p>查看文章與內容是否成功建立，預設是 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
-<p>如果出現：<strong>Port 4000 has been used. Try other port instead.</strong><br>開其他的port：<code>hexo server -p 5000</code>即可</p>
-<p><img src="https://i.imgur.com/B5YtGFY.png" alt=""></p>
-<h4 id="部署網站"><a href="#部署網站" class="headerlink" title="部署網站"></a>部署網站</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo d   #deploy</span><br></pre></td></tr></table></figure>
-<p>如果此時你發現報錯，可能是配置文件的空格或註解所導致</p>
-<ul>
-<li><a href="https://www.zhihu.com/question/29437235" target="_blank" rel="noopener">hexo deploy不能用？</a></li>
-<li><a href="https://loesspie.com/2018/02/27/problems-useing-hexo/" target="_blank" rel="noopener">使用hexo时遇到的问题</a></li>
-</ul>
-<p>完成後進到你自己的網站看看 <a href="https://github名稱.github.io/" target="_blank" rel="noopener">https://github名稱.github.io/</a> </p>
-<hr>
-<h2 id="使用主題Next"><a href="#使用主題Next" class="headerlink" title="使用主題Next"></a>使用主題Next</h2><p>參考<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">Next官方網站</a></p>
-<ul>
-<li><p>進到文件 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ cd 你的Hexo文件</span><br></pre></td></tr></table></figure></li>
-<li><p>clone你選擇的主題</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;iissnan&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在全域配置文件將預設主題改為Next</p>
-<blockquote>
-<p>路徑：文件夾/_config.yml</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https:&#x2F;&#x2F;hexo.io&#x2F;plugins&#x2F;</span><br><span class="line">## Themes: https:&#x2F;&#x2F;hexo.io&#x2F;themes&#x2F;</span><br><span class="line">theme: next</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>主題可選擇想要的外觀Scheme，並將註解(#)移除(擇一不能重複)<blockquote>
-<p>路徑：專案文件夾/themes/next/_config.yml</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Schemes</span><br><span class="line">scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line">#scheme: Gemini</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>重新啟動Server :<code>hexo s</code></p>
-<p><strong>完成！</strong></p>
-<p>參考來源：</p>
-<ul>
-<li><a href="https://hexo.io/zh-tw/docs/commands" target="_blank" rel="noopener">Hexo文件</a></li>
-<li><a href="https://medium.com/@bebebobohaha/%E4%BD%BF%E7%94%A8-hexo-gitpage-%E6%90%AD%E5%BB%BA%E5%80%8B%E4%BA%BA-blog-5c6ed52f23db" target="_blank" rel="noopener">如何搭建個人 Blog 使用 Hexo + Gitpage</a></li>
-<li><a href="https://yaoandy107.github.io/hexo-tutorial/" target="_blank" rel="noopener">Hexo+GitHub，新手也可以快速建立部落格</a></li>
-<li><a href="https://gojun.me/2019/06/12/hello-blog/" target="_blank" rel="noopener">欢迎来到我的新博客</a></li>
-<li><a href="https://liuchang.men/2019/03/20/%E8%BF%81%E7%A7%BB%E5%8D%9A%E5%AE%A2%E5%88%B0Hexo(NexT%E4%B8%BB%E9%A2%98)%20+%20GitHub%20Pages/" target="_blank" rel="noopener">遷移博客到Hexo(NexT主題) + GitHub Pages</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/charleen-xu.github.io/2019/12/18/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><a id="more"></a>  
-<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-  </entry>
+<search> 
+  
+  
+    
+    <entry>
+      <title>解決Laravel CORS的方法--laravel-cors(舊版已不適用，開發者已更新至1.0.1)</title>
+      <link href="/charleen-xu.github.io/2020/02/15/%E8%A7%A3%E6%B1%BALaravel%20CORS%E7%9A%84%E6%96%B9%E6%B3%95--laravel-cors(%E8%88%8A%E7%89%88%E5%B7%B2%E4%B8%8D%E9%81%A9%E7%94%A8%EF%BC%8C%E9%96%8B%E7%99%BC%E8%80%85%E5%B7%B2%E6%9B%B4%E6%96%B0%E8%87%B31.0.1)/"/>
+      <url>/charleen-xu.github.io/2020/02/15/%E8%A7%A3%E6%B1%BALaravel%20CORS%E7%9A%84%E6%96%B9%E6%B3%95--laravel-cors(%E8%88%8A%E7%89%88%E5%B7%B2%E4%B8%8D%E9%81%A9%E7%94%A8%EF%BC%8C%E9%96%8B%E7%99%BC%E8%80%85%E5%B7%B2%E6%9B%B4%E6%96%B0%E8%87%B31.0.1)/</url>
+      
+        <content type="html"><![CDATA[<h2 id="舊版-不要使用"><a href="#舊版-不要使用" class="headerlink" title="舊版(不要使用)"></a>舊版(不要使用)</h2><p><a href="https://github.com/barryvdh/laravel-cors" target="_blank" rel="noopener">https://github.com/barryvdh/laravel-cors</a></p><a id="more"></a><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">You also need to add Cors\ServiceProvider to your config/app.php providers <span class="keyword">array</span>:</span><br><span class="line"></span><br><span class="line">Barryvdh\Cors\ServiceProvider::class,</span><br><span class="line"><span class="keyword">Global</span> usage</span><br><span class="line">To allow CORS for all your routes, add the HandleCors middleware in the $middleware property of app/Http/Kernel.php class:</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span> $middleware = [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    \Barryvdh\Cors\HandleCors::class,</span><br><span class="line">];</span><br><span class="line">Group middleware</span><br><span class="line"><span class="keyword">If</span> you want to allow CORS on a specific middleware group <span class="keyword">or</span> route, add the HandleCors middleware to your group:</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span> $middlewareGroups = [</span><br><span class="line">    <span class="string">'web'</span> =&gt; [</span><br><span class="line">       <span class="comment">// ...</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    <span class="string">'api'</span> =&gt; [</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        \Barryvdh\Cors\HandleCors::class,</span><br><span class="line">    ],</span><br><span class="line">];</span><br></pre></td></tr></table></figure><h2 id="新版"><a href="#新版" class="headerlink" title="新版"></a>新版</h2><p><a href="https://github.com/fruitcake/laravel-cors" target="_blank" rel="noopener">https://github.com/fruitcake/laravel-cors</a></p><p>開發者更新的訊息：</p><h3 id="Upgrading-from-0-x-2019-12-30更新至1-0-1"><a href="#Upgrading-from-0-x-2019-12-30更新至1-0-1" class="headerlink" title="Upgrading from 0.x(2019/12/30更新至1.0.1)"></a>Upgrading from 0.x(2019/12/30更新至1.0.1)</h3><p>The vendor name has changed (see installation/usage)</p><blockquote><p>供應商名稱已更改（請參閱安裝/用法）</p></blockquote><p>Group middleware is no longer supported.</p><blockquote><p>不再使用Group middleware。</p></blockquote><p>A new ‘paths’ property is used to enable/disable CORS on certain routes. This is empty by default!</p><blockquote><p>新的“ paths”屬性用於在某些路由上啟用/禁用CORS。默認情況下為空！</p></blockquote><h3 id="在composer-json中需要fruitcake-laravel-cors軟件包，並更新依賴項："><a href="#在composer-json中需要fruitcake-laravel-cors軟件包，並更新依賴項：" class="headerlink" title="在composer.json中需要fruitcake / laravel-cors軟件包，並更新依賴項："></a>在composer.json中需要fruitcake / laravel-cors軟件包，並更新依賴項：</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> composer require fruitcake/laravel-cors</span></span><br></pre></td></tr></table></figure><h3 id="要允許所有路線使用CORS"><a href="#要允許所有路線使用CORS" class="headerlink" title="要允許所有路線使用CORS"></a>要允許所有路線使用CORS</h3><p>請在app / Http / Kernel.php類的$ middleware屬性中添加HandleCors中間件：</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> $middleware = [</span><br><span class="line">    \App\Http\Middleware\TrustProxies::class,</span><br><span class="line">    \App\Http\Middleware\CheckForMaintenanceMode::class,</span><br><span class="line">    \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,</span><br><span class="line">    \App\Http\Middleware\TrimStrings::class,</span><br><span class="line">    \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,</span><br><span class="line">    \App\Http\Middleware\TestLog::class,</span><br><span class="line">    \Fruitcake\Cors\HandleCors::class, <span class="comment">//cors</span></span><br><span class="line">];</span><br></pre></td></tr></table></figure><h3 id="現在到config-cors-php更新配置，以定義要在其上運行CORS服務的路徑（請參閱下面的配置）："><a href="#現在到config-cors-php更新配置，以定義要在其上運行CORS服務的路徑（請參閱下面的配置）：" class="headerlink" title="現在到config/cors.php更新配置，以定義要在其上運行CORS服務的路徑（請參閱下面的配置）："></a>現在到config/cors.php更新配置，以定義要在其上運行CORS服務的路徑（請參閱下面的配置）：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'paths'</span> =&gt; [<span class="string">'*'</span>],</span><br><span class="line"><span class="comment">//原先用文件中的配置，前端反應cors沒有改善，改以上面全域解決(但危險)</span></span><br></pre></td></tr></table></figure><h3 id="默認值在config-cors-php中設置。發布配置以將文件複製到您自己的配置中："><a href="#默認值在config-cors-php中設置。發布配置以將文件複製到您自己的配置中：" class="headerlink" title="默認值在config / cors.php中設置。發布配置以將文件複製到您自己的配置中："></a>默認值在config / cors.php中設置。發布配置以將文件複製到您自己的配置中：</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php artisan vendor:publish --tag=<span class="string">"cors"</span></span></span><br></pre></td></tr></table></figure><p>Note: When using custom headers, like X-Auth-Token or X-Requested-With, you must set the allowed_headers to include those headers. You can also set it to [‘*’] to allow all custom headers.</p><blockquote><p>注意：使用自定義標頭（例如X-Auth-Token或X-Requested-With）時，必須設置允許的標頭以包含那些標頭。您也可以將其設置為[‘*’]以允許所有自定義標頭。</p></blockquote><p>Note: If you are explicitly whitelisting headers, you must include Origin or requests will fail to be recognized as CORS.</p><blockquote><p>注意：如果您明確將標頭列入白名單，則必須包含Origin，否則請求將不會被識別為CORS。</p></blockquote><p><strong>allowed_origins, allowed_headers and allowed_methods</strong> can be set to [‘*’] to accept any value.</p><p>Note: Because of http method overriding in Laravel, allowing POST methods will also enable the API users to perform PUT and DELETE requests as well.</p><blockquote><p>注意：由於Laravel中重寫了http方法，因此允許POST方法還將使API用戶也可以執行PUT和DELETE請求。</p></blockquote>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LearnAndLive </tag>
+            
+            <tag> Laravel </tag>
+            
+            <tag> CORS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>orderby() 、 take() 用法</title>
+      <link href="/charleen-xu.github.io/2020/02/04/orderby()%20%E3%80%81%20take()%20%E7%94%A8%E6%B3%95/"/>
+      <url>/charleen-xu.github.io/2020/02/04/orderby()%20%E3%80%81%20take()%20%E7%94%A8%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<h2 id="oderby-排序"><a href="#oderby-排序" class="headerlink" title="oderby():排序"></a>oderby():排序</h2><p>ASC 由小往大的順序列出，而 DESC 由大往小的順序列出。 如果兩者沒有被寫出就會用 ASC。</p><h2 id="take-指定數量"><a href="#take-指定數量" class="headerlink" title="take():指定數量"></a>take():指定數量</h2><pre><code class="php">$userHistoryRecords = Searches::where(<span class="string">'user_id'</span>,$user_id)-&gt;orderBy(<span class="string">'created_at'</span>, <span class="string">'asc'</span>)-&gt;take(<span class="number">5</span>)-&gt;get();</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LearnAndLive </tag>
+            
+            <tag> Laravel </tag>
+            
+            <tag> Mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>timestamp 與 dateTime 及 date 與 timestamps的差異</title>
+      <link href="/charleen-xu.github.io/2020/02/02/timestamp%20%E8%88%87%20dateTime%20%E5%8F%8A%20date%20%E8%88%87%20timestamps%E7%9A%84%E5%B7%AE%E7%95%B0/"/>
+      <url>/charleen-xu.github.io/2020/02/02/timestamp%20%E8%88%87%20dateTime%20%E5%8F%8A%20date%20%E8%88%87%20timestamps%E7%9A%84%E5%B7%AE%E7%95%B0/</url>
+      
+        <content type="html"><![CDATA[<h3 id="參考資料：原文-Migrations-timestamp-VS-dateTime-VS-date-VS-timestamps"><a href="#參考資料：原文-Migrations-timestamp-VS-dateTime-VS-date-VS-timestamps" class="headerlink" title="參考資料：原文 / Migrations: timestamp VS dateTime VS date VS timestamps"></a>參考資料：原文 / <a href="https://laracasts.com/discuss/channels/laravel/migrations-timestamp-vs-datetime-vs-date-vs-timestamps?page=0" target="_blank" rel="noopener">Migrations: timestamp VS dateTime VS date VS timestamps</a></h3><p>timestamp and dateTime are similar - they store a date (YYYY-MM-DD) and time (HH:MM:SS) together in a single field i.e. YYYY-MM-DD HH:MM:SS. The difference between the two is that timestamp can use (MySQL’s) CURRENT_TIMESTAMP as its value, whenever the database record is updated. This can be handled at the database level and is great for Laravel’s created_at and updated_at fields.</p><a id="more"></a><blockquote><p><strong>timestamp與dateTime相似-將日期（YYYY-MM-DD）和時間（HH:MM:SS）一起存儲在同個字段，也就是YYYY-MM-DD HH:MM:SS。兩者之間的區別在於，無論何時更新DB記錄，timestamp都可以使用（MySQL）CURRENT_TIMESTAMP作為其值。這可以在資料庫層級進行處理，非常適合Laravel created_at和updated_at字段。</strong></p></blockquote><p>Note also that timestamp has a limit of 1970-01-01 00:00:01 UTC to 2038-01-19 03:14:07 UTC (source), whilst dateTime has a range of 1000-01-01 00:00:00 to 9999-12-31 23:59:59, so consider what you plan on storing in that field before determining which type to use.</p><blockquote><p><strong>還要注意，timestamp它的最大限制為1970-01-01 00:00:01 UTC to 2038-01-19 03:14:07 UTC（source），而最大dateTime範圍為1000-01-01 00:00:00to 9999-12-31 23:59:59，因此在確定使用哪種類型之前，要計劃在該字段中存哪一種型別哦。</strong></p></blockquote><p>date stores just the date component i.e. YYYY-MM-DD (1000-00-01 to 9999-12-31).</p><blockquote><p><strong>date僅存儲日期部分，即YYYY-MM-DD（1000-00-01至9999-12-31）。</strong></p></blockquote><p>timestamps doesn’t take an argument, it’s a shortcut to add the created_at and updated_at timestamp fields to your database.</p><blockquote><p><strong>timestamps不帶引數，這是將created_at和updated_at時間戳記字段添加到資料庫中的捷徑。</strong></p></blockquote>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LearnAndLive </tag>
+            
+            <tag> Laravel </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>在controller使用部分Faker的方法</title>
+      <link href="/charleen-xu.github.io/2020/02/01/%E5%9C%A8controller%E4%BD%BF%E7%94%A8%E9%83%A8%E5%88%86Faker%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+      <url>/charleen-xu.github.io/2020/02/01/%E5%9C%A8controller%E4%BD%BF%E7%94%A8%E9%83%A8%E5%88%86Faker%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<h3 id="用guzzle取圖書資料＋DB建立部分假資料"><a href="#用guzzle取圖書資料＋DB建立部分假資料" class="headerlink" title="用guzzle取圖書資料＋DB建立部分假資料"></a>用guzzle取圖書資料＋DB建立部分假資料</h3><a id="more"></a>  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getJson</span><span class="params">(Faker $faker)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $client = <span class="keyword">new</span> \GuzzleHttp\Client();</span><br><span class="line">        $res = $client-&gt;request(<span class="string">'GET'</span>, <span class="string">'http://bookshelf.goodideas-studio.com/api'</span>);</span><br><span class="line"></span><br><span class="line">        $myData = json_decode($res-&gt;getBody()-&gt;getContents(), <span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">foreach</span> ($myData <span class="keyword">as</span> $item) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">foreach</span> ($item <span class="keyword">as</span> $data) &#123;</span><br><span class="line"></span><br><span class="line">            $addNewBookData = Book::create([<span class="string">'image'</span> =&gt; $data[<span class="string">'image'</span>],</span><br><span class="line">                <span class="string">'price'</span> =&gt; intval($data[<span class="string">'originPrice'</span>]),</span><br><span class="line">                <span class="string">'title'</span> =&gt; $data[<span class="string">'name'</span>],</span><br><span class="line">                <span class="string">'ISBN'</span> =&gt; $data[<span class="string">'ISBN'</span>],</span><br><span class="line">                <span class="string">'author'</span> =&gt; $faker-&gt;name,</span><br><span class="line">                <span class="string">'translator'</span> =&gt; $faker-&gt;name,</span><br><span class="line">                <span class="string">'press'</span> =&gt; $faker-&gt;randomElement([<span class="string">'好想出版社'</span>, <span class="string">'促進讀書出版社'</span>, <span class="string">'好書人人讀出版社'</span>, <span class="string">'我只想賺錢出版社'</span>]),</span><br><span class="line">                <span class="string">'intro'</span> =&gt; $faker-&gt;realtext(<span class="number">30</span>),</span><br><span class="line">                <span class="string">'publication_date'</span> =&gt; $faker-&gt;date,</span><br><span class="line">                <span class="string">'language'</span> =&gt; $faker-&gt;randomElement([<span class="string">'中文'</span>, <span class="string">'簡體中文'</span>, <span class="string">'英文'</span>])</span><br><span class="line">            ]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LearnAndLive </tag>
+            
+            <tag> Faker </tag>
+            
+            <tag> guzzle </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>將foreach印出的資料存成array[ ]</title>
+      <link href="/charleen-xu.github.io/2020/01/27/%E5%B0%87foreach%E5%8D%B0%E5%87%BA%E7%9A%84%E8%B3%87%E6%96%99%E5%AD%98%E6%88%90array%5B%20%5D/"/>
+      <url>/charleen-xu.github.io/2020/01/27/%E5%B0%87foreach%E5%8D%B0%E5%87%BA%E7%9A%84%E8%B3%87%E6%96%99%E5%AD%98%E6%88%90array%5B%20%5D/</url>
+      
+        <content type="html"><![CDATA[<h3 id="將User搜尋的圖書紀錄儲存到DB，用foreach遍歷的方式將book-id儲存成array"><a href="#將User搜尋的圖書紀錄儲存到DB，用foreach遍歷的方式將book-id儲存成array" class="headerlink" title="將User搜尋的圖書紀錄儲存到DB，用foreach遍歷的方式將book_id儲存成array"></a>將User搜尋的圖書紀錄儲存到DB，用foreach遍歷的方式將book_id儲存成array</h3><p>count在這裡是用來檢查陣列有多少個元素，foreach遍歷是否有成功</p><a id="more"></a><pre><code class="php"><span class="keyword">foreach</span> ($searchLists <span class="keyword">as</span> $searchList) {    $authors[] = $searchList-&gt;book_id;    $a = count($authors);    <span class="keyword">continue</span>;}</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LearnAndLive </tag>
+            
+            <tag> PHP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>collection的delete限制 不存在Collection::delete用法</title>
+      <link href="/charleen-xu.github.io/2020/01/26/collection%E7%9A%84delete%E9%99%90%E5%88%B6%20%E4%B8%8D%E5%AD%98%E5%9C%A8Collection%20delete%E7%94%A8%E6%B3%95/"/>
+      <url>/charleen-xu.github.io/2020/01/26/collection%E7%9A%84delete%E9%99%90%E5%88%B6%20%E4%B8%8D%E5%AD%98%E5%9C%A8Collection%20delete%E7%94%A8%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<h2 id="collection不能直接調用delete，除此之外，想要刪除整張表的資料可用truncate"><a href="#collection不能直接調用delete，除此之外，想要刪除整張表的資料可用truncate" class="headerlink" title="collection不能直接調用delete，除此之外，想要刪除整張表的資料可用truncate"></a>collection不能直接調用delete，除此之外，想要刪除整張表的資料可用truncate</h2><p><strong>“message”: “Method Illuminate\Database\Eloquent\Collection::delete does not exist.”</strong></p><a id="more"></a>  <ul><li>改利用foreach刪除多筆資料<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">delete</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $user_id = Auth::user()-&gt;id;</span><br><span class="line"></span><br><span class="line">    $deleteHistorySearches = Searches::where(<span class="string">'user_id'</span>, $user_id)-&gt;get();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span> ($deleteHistorySearches <span class="keyword">as</span> $deleteHistorySearch) &#123;</span><br><span class="line"></span><br><span class="line">        $deleteId = $deleteHistorySearch-&gt;id;</span><br><span class="line"></span><br><span class="line">        $deleteData = Searches::where(<span class="string">'id'</span>, $deleteId)-&gt;delete();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> response([<span class="string">'message'</span> =&gt; <span class="string">'Clear all history records'</span>]);</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LearnAndLive </tag>
+            
+            <tag> Laravel </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo裝起來！</title>
+      <link href="/charleen-xu.github.io/2019/12/25/Hexo%E8%A3%9D%E8%B5%B7%E4%BE%86%EF%BC%81/"/>
+      <url>/charleen-xu.github.io/2019/12/25/Hexo%E8%A3%9D%E8%B5%B7%E4%BE%86%EF%BC%81/</url>
+      
+        <content type="html"><![CDATA[<h2 id="環境配置："><a href="#環境配置：" class="headerlink" title="環境配置："></a>環境配置：</h2><h3 id="安裝Node-js"><a href="#安裝Node-js" class="headerlink" title="安裝Node.js"></a>安裝Node.js</h3><p>筆者在安裝來源為Node.js<a href="https://nodejs.org/en/" target="_blank" rel="noopener">官網</a>，嘗試好幾次仍然跳出錯誤。</p><p>依照Hexo官網的指示，輸入下列指令即可</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash</span><br></pre></td></tr></table></figure><a id="more"></a>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install node</span><br></pre></td></tr></table></figure><p>至於為什麼用nvm，可以查看這篇<a href="https://www.onejar99.com/nvm-install-for-unix-like/" target="_blank" rel="noopener">用nvm install node 安裝Node.js</a></p><h3 id="安裝Hexo-Git"><a href="#安裝Hexo-Git" class="headerlink" title="安裝Hexo Git"></a>安裝Hexo Git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure><p>如果此時報錯提示為<strong>gyp: No Xcode or CLT version detected!(未檢測到Xcode或CLT版本)</strong></p><p>就筆者的當時的處理方式有二：</p><ul><li><p>首先是檢查MacOS是否更新到最新版本，但更新完後輸入上面的指令依然報錯。</p></li><li><p>第二是我原先沒有安裝Xcode，但安裝後又顯示上述報錯，這不是很奇怪？搜尋了一下發現有蠻多人面臨相同問題，大多數的解決方式為<code>sudo xcode-select --install</code>，<a href="https://juejin.im/post/5c73986de51d450dfc6f30e8" target="_blank" rel="noopener">這篇</a>提到可能是Mac升級後，缺了xcode 的CLI 工具，但我輸入這個指令還是有報錯的提示。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[報錯]xcode-select: error: command line tools are already installed, use &quot;Software Update&quot; to install updates</span><br></pre></td></tr></table></figure><p>最後是依據<a href="https://stackoverflow.com/questions/34617452/how-to-update-xcode-from-command-line" target="_blank" rel="noopener">這篇</a>執行<code>sudo rm -rf /Library/Developer/CommandLineTools</code>，移除後<code>xcode-select --install</code>重新執行就成功了。</p></li></ul><p><strong>報錯解決後，重新執行</strong><code>npm install hexo-deployer-git --save</code></p><h3 id="安裝Hexo"><a href="#安裝Hexo" class="headerlink" title="安裝Hexo"></a>安裝Hexo</h3><ul><li><code>npm install hexo-cli -g</code> 或 <code>sudo npm install -g hexo-cli</code></li><li><code>hexo init [部落格名稱]</code></li><li><code>cd [部落格名稱]</code>  # 移至剛創建的資料夾</li><li><code>npm install</code>        # 安裝相關套件</li></ul><h3 id="將Hexo配置到Github上"><a href="#將Hexo配置到Github上" class="headerlink" title="將Hexo配置到Github上"></a>將Hexo配置到Github上</h3><p>登入Github新增一個Repositories，名稱必須為<code>Github帳號名.github.io</code></p><p>回到專案文件夾，點開全域配置文件_config.yml，將文件最下方原先空白的deploy，修改如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy: </span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repository: https://github.com/charleen-xu/charleen-xu.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure><h5 id="提醒：冒號後一定要空格！"><a href="#提醒：冒號後一定要空格！" class="headerlink" title="提醒：冒號後一定要空格！"></a>提醒：冒號後一定要空格！</h5><blockquote><p>不確定repository的url？到Github看看<br><img src="https://i.imgur.com/RAjPqyx.png" alt=""></p></blockquote><hr><h4 id="產生靜態檔案-generate"><a href="#產生靜態檔案-generate" class="headerlink" title="產生靜態檔案 generate"></a>產生靜態檔案 generate</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g  # generate</span><br></pre></td></tr></table></figure><p>配置完成後的文章更新方式，參考<a href="https://winney07.github.io/2018/08/02/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/" target="_blank" rel="noopener">在Hexo博客中发布文章</a></p><h4 id="新增Hexo文章"><a href="#新增Hexo文章" class="headerlink" title="新增Hexo文章"></a>新增Hexo文章</h4><blockquote><p>路徑：專案文件夾/source/_posts</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new 文章名稱</span><br></pre></td></tr></table></figure><p>打開新增該文件， 使用Markdown語法編輯內文</p><h5 id="範例："><a href="#範例：" class="headerlink" title="範例："></a>範例：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章標題</span><br><span class="line">date: 自動產生日期與時間</span><br><span class="line">tags: 自定義標籤</span><br><span class="line">---</span><br><span class="line">## 內容標題</span><br><span class="line">內文</span><br><span class="line"></span><br><span class="line">&lt;!--more--&gt;  #頁面上顯示Readmore</span><br></pre></td></tr></table></figure><h4 id="本地測試，啟動server"><a href="#本地測試，啟動server" class="headerlink" title="本地測試，啟動server"></a>本地測試，啟動server</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s  # server</span><br></pre></td></tr></table></figure><p>查看文章與內容是否成功建立，預設是 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p><p>如果出現：<strong>Port 4000 has been used. Try other port instead.</strong><br>開其他的port：<code>hexo server -p 5000</code>即可</p><p><img src="https://i.imgur.com/B5YtGFY.png" alt=""></p><h4 id="部署網站"><a href="#部署網站" class="headerlink" title="部署網站"></a>部署網站</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d   #deploy</span><br></pre></td></tr></table></figure><p>如果此時你發現報錯，可能是配置文件的空格或註解所導致</p><ul><li><a href="https://www.zhihu.com/question/29437235" target="_blank" rel="noopener">hexo deploy不能用？</a></li><li><a href="https://loesspie.com/2018/02/27/problems-useing-hexo/" target="_blank" rel="noopener">使用hexo时遇到的问题</a></li></ul><p>完成後進到你自己的網站看看 <a href="https://github名稱.github.io/" target="_blank" rel="noopener">https://github名稱.github.io/</a> </p><hr><h2 id="使用主題Next"><a href="#使用主題Next" class="headerlink" title="使用主題Next"></a>使用主題Next</h2><p>參考<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">Next官方網站</a></p><ul><li><p>進到文件 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd 你的Hexo文件</span><br></pre></td></tr></table></figure></li><li><p>clone你選擇的主題</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;iissnan&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure></li><li><p>在全域配置文件將預設主題改為Next</p><blockquote><p>路徑：文件夾/_config.yml</p></blockquote></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https:&#x2F;&#x2F;hexo.io&#x2F;plugins&#x2F;</span><br><span class="line">## Themes: https:&#x2F;&#x2F;hexo.io&#x2F;themes&#x2F;</span><br><span class="line">theme: next</span><br></pre></td></tr></table></figure><ul><li>主題可選擇想要的外觀Scheme，並將註解(#)移除(擇一不能重複)<blockquote><p>路徑：專案文件夾/themes/next/_config.yml</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Schemes</span><br><span class="line">scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line">#scheme: Gemini</span><br></pre></td></tr></table></figure></li></ul><p>重新啟動Server :<code>hexo s</code></p><p><strong>完成！</strong></p><p>參考來源：</p><ul><li><a href="https://hexo.io/zh-tw/docs/commands" target="_blank" rel="noopener">Hexo文件</a></li><li><a href="https://medium.com/@bebebobohaha/%E4%BD%BF%E7%94%A8-hexo-gitpage-%E6%90%AD%E5%BB%BA%E5%80%8B%E4%BA%BA-blog-5c6ed52f23db" target="_blank" rel="noopener">如何搭建個人 Blog 使用 Hexo + Gitpage</a></li><li><a href="https://yaoandy107.github.io/hexo-tutorial/" target="_blank" rel="noopener">Hexo+GitHub，新手也可以快速建立部落格</a></li><li><a href="https://gojun.me/2019/06/12/hello-blog/" target="_blank" rel="noopener">欢迎来到我的新博客</a></li><li><a href="https://liuchang.men/2019/03/20/%E8%BF%81%E7%A7%BB%E5%8D%9A%E5%AE%A2%E5%88%B0Hexo(NexT%E4%B8%BB%E9%A2%98)%20+%20GitHub%20Pages/" target="_blank" rel="noopener">遷移博客到Hexo(NexT主題) + GitHub Pages</a></li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/charleen-xu.github.io/2019/12/18/hello-world/"/>
+      <url>/charleen-xu.github.io/2019/12/18/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><a id="more"></a>  <h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
 </search>
