@@ -1,447 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>【報錯】The only supported ciphers are AES-128-CBC and AES-256-CBC with the correct key lengths.</title>
-    <url>/charleen-xu.github.io/2020/02/20/%5B%E5%A0%B1%E9%8C%AF%5D%20The%20only%20supported%20ciphers%20are%20AES-128-CBC%20and%20AES-256-CBC%20with%20the%20correct%20key%20lengths./</url>
-    <content><![CDATA[<h3 id="運行laravel後歡迎頁面出現報錯，頓時心慌，查了一下還好有解。"><a href="#運行laravel後歡迎頁面出現報錯，頓時心慌，查了一下還好有解。" class="headerlink" title="運行laravel後歡迎頁面出現報錯，頓時心慌，查了一下還好有解。"></a>運行laravel後歡迎頁面出現報錯，頓時心慌，查了一下還好有解。</h3><p><img src="https://i.imgur.com/T7M3isw.png" alt=""></p>
-<a id="more"></a>
-
-<p><img src="https://i.imgur.com/BtUfIkQ.png" alt=""></p>
-<p>參考解法：<a href="https://blog.goodjack.tw/2017/03/laravel-clone.html" target="_blank" rel="noopener">Laravel 專案從 GitHub clone 下來後要做什麼？</a></p>
-<p>問題出現的原因，推測是有些動作還沒完成就進行<code>php artisan serve</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php artisan config:clear</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php artisan key:generate</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php artisan serve</span></span><br></pre></td></tr></table></figure>
-
-<p>成功解決！</p>
-]]></content>
-      <tags>
-        <tag>報錯</tag>
-        <tag>laravel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解決Laravel CORS的方法--laravel-cors(舊版已不適用，開發者已更新至1.0.1)</title>
-    <url>/charleen-xu.github.io/2020/02/15/%E8%A7%A3%E6%B1%BALaravel%20CORS%E7%9A%84%E6%96%B9%E6%B3%95--laravel-cors(%E8%88%8A%E7%89%88%E5%B7%B2%E4%B8%8D%E9%81%A9%E7%94%A8%EF%BC%8C%E9%96%8B%E7%99%BC%E8%80%85%E5%B7%B2%E6%9B%B4%E6%96%B0%E8%87%B31.0.1)/</url>
-    <content><![CDATA[<h3 id="舊版-不要使用"><a href="#舊版-不要使用" class="headerlink" title="舊版(不要使用)"></a>舊版(不要使用)</h3><p><a href="https://github.com/barryvdh/laravel-cors" target="_blank" rel="noopener">https://github.com/barryvdh/laravel-cors</a></p>
-<a id="more"></a>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">You also need to add Cors\ServiceProvider to your config/app.php providers <span class="keyword">array</span>:</span><br><span class="line"></span><br><span class="line">Barryvdh\Cors\ServiceProvider::class,</span><br><span class="line"><span class="keyword">Global</span> usage</span><br><span class="line">To allow CORS for all your routes, add the HandleCors middleware in the $middleware property of app/Http/Kernel.php class:</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span> $middleware = [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    \Barryvdh\Cors\HandleCors::class,</span><br><span class="line">];</span><br><span class="line">Group middleware</span><br><span class="line"><span class="keyword">If</span> you want to allow CORS on a specific middleware group <span class="keyword">or</span> route, add the HandleCors middleware to your group:</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span> $middlewareGroups = [</span><br><span class="line">    <span class="string">'web'</span> =&gt; [</span><br><span class="line">       <span class="comment">// ...</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    <span class="string">'api'</span> =&gt; [</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        \Barryvdh\Cors\HandleCors::class,</span><br><span class="line">    ],</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-
-<h3 id="新版"><a href="#新版" class="headerlink" title="新版"></a>新版</h3><p><a href="https://github.com/fruitcake/laravel-cors" target="_blank" rel="noopener">https://github.com/fruitcake/laravel-cors</a></p>
-<p>開發者更新的訊息：</p>
-<h4 id="Upgrading-from-0-x-2019-12-30更新至1-0-1"><a href="#Upgrading-from-0-x-2019-12-30更新至1-0-1" class="headerlink" title="Upgrading from 0.x(2019/12/30更新至1.0.1)"></a>Upgrading from 0.x(2019/12/30更新至1.0.1)</h4><p>The vendor name has changed (see installation/usage)</p>
-<blockquote>
-<p>供應商名稱已更改（請參閱安裝/用法）</p>
-</blockquote>
-<p>Group middleware is no longer supported.</p>
-<blockquote>
-<p>不再使用Group middleware。</p>
-</blockquote>
-<p>A new ‘paths’ property is used to enable/disable CORS on certain routes. This is empty by default!</p>
-<blockquote>
-<p>新的“ paths”屬性用於在某些路由上啟用/禁用CORS。默認情況下為空！</p>
-</blockquote>
-<h4 id="在composer-json中需要fruitcake-laravel-cors軟件包，並更新依賴項："><a href="#在composer-json中需要fruitcake-laravel-cors軟件包，並更新依賴項：" class="headerlink" title="在composer.json中需要fruitcake / laravel-cors軟件包，並更新依賴項："></a>在composer.json中需要fruitcake / laravel-cors軟件包，並更新依賴項：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> composer require fruitcake/laravel-cors</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="要允許所有路線使用CORS"><a href="#要允許所有路線使用CORS" class="headerlink" title="要允許所有路線使用CORS"></a>要允許所有路線使用CORS</h4><p>請在app / Http / Kernel.php類的$ middleware屬性中添加HandleCors中間件：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">protected</span> $middleware = [</span><br><span class="line">    \App\Http\Middleware\TrustProxies::class,</span><br><span class="line">    \App\Http\Middleware\CheckForMaintenanceMode::class,</span><br><span class="line">    \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,</span><br><span class="line">    \App\Http\Middleware\TrimStrings::class,</span><br><span class="line">    \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,</span><br><span class="line">    \App\Http\Middleware\TestLog::class,</span><br><span class="line">    \Fruitcake\Cors\HandleCors::class, <span class="comment">//cors</span></span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-
-<h4 id="現在到config-cors-php更新配置，以定義要在其上運行CORS服務的路徑（請參閱下面的配置）："><a href="#現在到config-cors-php更新配置，以定義要在其上運行CORS服務的路徑（請參閱下面的配置）：" class="headerlink" title="現在到config/cors.php更新配置，以定義要在其上運行CORS服務的路徑（請參閱下面的配置）："></a>現在到config/cors.php更新配置，以定義要在其上運行CORS服務的路徑（請參閱下面的配置）：</h4><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="string">'paths'</span> =&gt; [<span class="string">'*'</span>],</span><br><span class="line"><span class="comment">//原先用文件中的配置，前端反應cors沒有改善，改以上面全域解決(但危險)</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="默認值在config-cors-php中設置。發布配置以將文件複製到您自己的配置中："><a href="#默認值在config-cors-php中設置。發布配置以將文件複製到您自己的配置中：" class="headerlink" title="默認值在config / cors.php中設置。發布配置以將文件複製到您自己的配置中："></a>默認值在config / cors.php中設置。發布配置以將文件複製到您自己的配置中：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php artisan vendor:publish --tag=<span class="string">"cors"</span></span></span><br></pre></td></tr></table></figure>
-<p>Note: When using custom headers, like X-Auth-Token or X-Requested-With, you must set the allowed_headers to include those headers. You can also set it to [‘*’] to allow all custom headers.</p>
-<blockquote>
-<p>注意：使用自定義標頭（例如X-Auth-Token或X-Requested-With）時，必須設置允許的標頭以包含那些標頭。您也可以將其設置為[‘*’]以允許所有自定義標頭。</p>
-</blockquote>
-<p>Note: If you are explicitly whitelisting headers, you must include Origin or requests will fail to be recognized as CORS.</p>
-<blockquote>
-<p>注意：如果您明確將標頭列入白名單，則必須包含Origin，否則請求將不會被識別為CORS。</p>
-</blockquote>
-<p><strong>allowed_origins, allowed_headers and allowed_methods</strong> can be set to [‘*’] to accept any value.</p>
-<p>Note: Because of http method overriding in Laravel, allowing POST methods will also enable the API users to perform PUT and DELETE requests as well.</p>
-<blockquote>
-<p>注意：由於Laravel中重寫了http方法，因此允許POST方法還將使API用戶也可以執行PUT和DELETE請求。</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>LearnAndLive</tag>
-        <tag>Laravel</tag>
-        <tag>CORS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>實作二 Laravel + Botman製作Facebook Messenger Chatbot</title>
-    <url>/charleen-xu.github.io/2020/02/10/%E5%AF%A6%E4%BD%9C%E4%BA%8C%20Laravel%20%20Botman%E8%A3%BD%E4%BD%9CFacebook%20Messenger%20Chatbot/</url>
-    <content><![CDATA[<h3 id="延續實作一，創造Facebook-Messenger-Chatbot"><a href="#延續實作一，創造Facebook-Messenger-Chatbot" class="headerlink" title="延續實作一，創造Facebook Messenger Chatbot"></a>延續實作一，創造Facebook Messenger Chatbot</h3><ul>
-<li>設定driver</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php artisan botman:install-driver facebook</span></span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-
-<ul>
-<li>查看是否如下圖被打勾<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php artisan botman:list-drivers</span></span><br></pre></td></tr></table></figure>
-<img src="https://i.imgur.com/yO9v6Bx.png" alt=""></li>
-</ul>
-<h4 id="你需要這三個參數，請跟隨接下來的指示："><a href="#你需要這三個參數，請跟隨接下來的指示：" class="headerlink" title="你需要這三個參數，請跟隨接下來的指示："></a>你需要這三個參數，請跟隨接下來的指示：</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">FACEBOOK_TOKEN &#x3D; YOUR_APP_FACEBOOK_PAGE_TOKEN</span><br><span class="line">FACEBOOK_APP_SECRET &#x3D; YOUR_APP_SECRET</span><br><span class="line">FACEBOOK_VERIFICATION &#x3D; YOUR_VERIFICATION</span><br></pre></td></tr></table></figure>
-
-<h4 id="設置Facebook-App"><a href="#設置Facebook-App" class="headerlink" title="設置Facebook App"></a>設置Facebook App</h4><ul>
-<li><p>首先，你需要有新建一個用來測試的粉絲專頁</p>
-</li>
-<li><p>接著進入 <a href="https://developers.facebook.com/?locale=zh_TW" target="_blank" rel="noopener">https://developers.facebook.com/?locale=zh_TW</a></p>
-</li>
-</ul>
-<p><img src="https://i.imgur.com/5ab8hAC.png" alt=""></p>
-<ul>
-<li><p>輸入名稱與連絡電子郵件<br><img src="https://i.imgur.com/CEphnai.png" alt=""></p>
-</li>
-<li><p>選擇Messenger-&gt;按下設定</p>
-</li>
-</ul>
-<p><img src="https://i.imgur.com/CaTvlA3.png" alt=""></p>
-<ul>
-<li>產品-&gt;Messenger-&gt;設定-&gt;按下新增粉絲專頁</li>
-</ul>
-<p><img src="https://i.imgur.com/HIzEycb.png" alt=""></p>
-<ul>
-<li>以你的身份繼續認證，選擇你建立的測試粉絲專頁</li>
-</ul>
-<p><img src="https://i.imgur.com/qpQTLTZ.png" alt=""></p>
-<ul>
-<li>產品-&gt;Messenger-&gt;設定-&gt;按下產生權杖：得到FACEBOOK_TOKEN = YOUR_APP_FACEBOOK_PAGE_TOKEN</li>
-</ul>
-<p><img src="https://i.imgur.com/KM7LMcx.png" alt=""></p>
-<ul>
-<li><p>左側設定-&gt;基本資料：得到FACEBOOK_APP_SECRET = YOUR_APP_SECRET</p>
-</li>
-<li><p>將前面反向代理拿到的ngrok暫時 https 貼到應用程式網域(server必須要提供https)</p>
-</li>
-</ul>
-<p><img src="https://i.imgur.com/PftAuvg.png" alt=""></p>
-<ul>
-<li>產品-&gt;Messenger-&gt;設定-&gt;點選編輯回呼網址：得到FACEBOOK_VERIFICATION = YOUR_VERIFICATION</li>
-</ul>
-<p><img src="https://i.imgur.com/KWibZL1.png" alt=""></p>
-<h3 id="注意"><a href="#注意" class="headerlink" title="[注意]"></a>[注意]</h3><p>原本編輯粉絲專頁訂閱位在設置webhook下方，改版後變成要先新增webhook，完成此步驟後會出現右下方的新增訂閱。</p>
-<blockquote>
-<p>一直找不到才發現改版了qq<br><img src="https://i.imgur.com/n4f8sAo.png" alt=""></p>
-</blockquote>
-<ul>
-<li>勾選訂閱欄位的messages 與 messaging_postbacks</li>
-</ul>
-<p><img src="https://i.imgur.com/LhpCVBb.png" alt=""></p>
-<ul>
-<li>設定完成</li>
-</ul>
-<p><img src="https://i.imgur.com/Cx4rEnP.png" alt=""></p>
-<h4 id="將這三個必要的環境變數放入-env"><a href="#將這三個必要的環境變數放入-env" class="headerlink" title="將這三個必要的環境變數放入.env"></a>將這三個必要的環境變數放入.env</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">FACEBOOK_TOKEN &#x3D; ＊＊＊＊＊＊</span><br><span class="line">FACEBOOK_APP_SECRET &#x3D; ＊＊＊＊＊＊</span><br><span class="line">FACEBOOK_VERIFICATION &#x3D; ＊＊＊＊＊＊</span><br></pre></td></tr></table></figure>
-
-<h3 id="測試-Charleentestbotman"><a href="#測試-Charleentestbotman" class="headerlink" title="測試 Charleentestbotman"></a>測試 Charleentestbotman</h3><p><img src="https://i.imgur.com/l05hjpB.png" alt=""></p>
-<p>:smile: 終於成功啦！！！！！</p>
-]]></content>
-      <tags>
-        <tag>Laravel</tag>
-        <tag>chatbot</tag>
-        <tag>Facebook Messenger Chatbot</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>實作一 Laravel + Botman製作Messenger Chatbot</title>
-    <url>/charleen-xu.github.io/2020/02/10/Laravel%20+%20Botman%E8%A3%BD%E4%BD%9CMessenger%20Chatbot/</url>
-    <content><![CDATA[<p>[文件] <a href="https://botman.io/2.0/botman-studio" target="_blank" rel="noopener">BotMan Studio</a></p>
-<p>[參考來源]：<br><a href="https://morioh.com/p/a70505b642e4" target="_blank" rel="noopener">Building a Chatbot with Botman and Laravel</a><br><a href="https://chatbotsmagazine.com/build-a-facebook-messenger-chatbot-in-laravel-with-botman-studio-2-0-b84c0855f51f" target="_blank" rel="noopener">Build a Facebook Messenger Chatbot in Laravel with BotMan Studio 2.0</a></p>
-<p>版本：<br>PHP 7.3.14 </p>
-<a id="more"></a>
-
-<ul>
-<li>實作一 <a href="https://kanchengzxdfgcv.blogspot.com/2019/03/php-botman.html" target="_blank" rel="noopener">PHP 聊天機器人記錄 - Botman</a></li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">composer global require "botman/installer" (失敗，下一個)</span><br></pre></td></tr></table></figure>
-<p>or</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">composer require botman/botman</span><br></pre></td></tr></table></figure>
-<ul>
-<li>新增一個測試專案<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">composer create-project --prefer-dist botman/studio 專案名稱</span><br></pre></td></tr></table></figure></li>
-<li>打開專案-&gt;<code>route</code>下的<code>botman.php</code></li>
-</ul>
-<p><img src="https://i.imgur.com/klWGXx2.png" alt=""></p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Controllers</span>\<span class="title">BotManController</span>;</span><br><span class="line"></span><br><span class="line">$botman = resolve(<span class="string">'botman'</span>);</span><br><span class="line"></span><br><span class="line">$botman-&gt;hears(<span class="string">'Hi'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($bot)</span> </span>&#123; <span class="comment">#聽到</span></span><br><span class="line">    $bot-&gt;reply(<span class="string">'Hello!'</span>); <span class="comment">#回覆</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$botman-&gt;hears(<span class="string">'今天'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($bot)</span> </span>&#123;</span><br><span class="line">    $bot-&gt;reply(<span class="string">'哦對'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">#自行複製輸入</span></span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line"></span><br><span class="line">$botman-&gt;hears(<span class="string">'Start conversation'</span>, BotManController::class.<span class="string">'@startConversation'</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>到<code>BotManController.php</code>，我們來修改一下</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $botman = app(<span class="string">'botman'</span>);</span><br><span class="line"></span><br><span class="line">        $botman-&gt;hears(<span class="string">'&#123;message&#125;'</span>, <span class="function"><span class="keyword">function</span><span class="params">($botman, $message)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> ($message == <span class="string">'你好'</span>) &#123;</span><br><span class="line">                <span class="keyword">$this</span>-&gt;askName($botman);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        $botman-&gt;listen();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">askName</span><span class="params">($botman)</span> #新增</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $botman-&gt;ask(<span class="string">'Hello! 請報上大名'</span>, <span class="function"><span class="keyword">function</span><span class="params">(Answer $answer)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            $name = $answer-&gt;getText();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">$this</span>-&gt;say($name . <span class="string">'今天過得如何？可以跟我分享嗎 '</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>啟動本地server <a href="http://127.0.0.1:8000" target="_blank" rel="noopener">http://127.0.0.1:8000</a></li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php artisan serve</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="ngrok-把localhost-對應到-https-public-domain-的服務"><a href="#ngrok-把localhost-對應到-https-public-domain-的服務" class="headerlink" title="ngrok : 把localhost 對應到 https public domain 的服務"></a>ngrok : 把localhost 對應到 https public domain 的服務</h2><p>[ Ngrok 文件 ] <a href="https://ngrok.com/docs" target="_blank" rel="noopener">Documentation</a></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ngrok http 8000</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>得到暫時的https public domain(反白處)</li>
-</ul>
-<p><img src="https://i.imgur.com/bnaFMRv.png" alt=""></p>
-<ul>
-<li>也可以在網頁上查看，ngrok提供Inspecting your traffic，輸入<code>http://localhost:4040</code></li>
-</ul>
-<p><img src="https://i.imgur.com/PfN05KF.png" alt=""></p>
-<ul>
-<li>首頁：</li>
-</ul>
-<p><img src="https://i.imgur.com/bIGSZMp.jpg" alt=""></p>
-<p>輸入：<code>https://068b3aa9.ngrok.io/botman/tinker</code></p>
-<ul>
-<li>在空白欄位處開始測試</li>
-</ul>
-<p><img src="https://i.imgur.com/Ksr4YZ1.png" alt=""></p>
-<p>成功返回訊息！</p>
-]]></content>
-      <tags>
-        <tag>Laravel</tag>
-        <tag>chatbot</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>orderby() 、 take() 用法</title>
-    <url>/charleen-xu.github.io/2020/02/04/orderby()%20%E3%80%81%20take()%20%E7%94%A8%E6%B3%95/</url>
-    <content><![CDATA[<h3 id="oderby-排序"><a href="#oderby-排序" class="headerlink" title="oderby():排序"></a>oderby():排序</h3><p>ASC 由小往大的順序列出，而 DESC 由大往小的順序列出。 如果兩者沒有被寫出就會用 ASC。</p>
-<h3 id="take-指定數量"><a href="#take-指定數量" class="headerlink" title="take():指定數量"></a>take():指定數量</h3><pre><code class="php">$userHistoryRecords = Searches::where(<span class="string">'user_id'</span>,$user_id)
--&gt;orderBy(<span class="string">'created_at'</span>, <span class="string">'asc'</span>)-&gt;take(<span class="number">5</span>)-&gt;get();</code></pre>
-]]></content>
-      <tags>
-        <tag>LearnAndLive</tag>
-        <tag>Laravel</tag>
-        <tag>Mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>timestamp 與 dateTime 及 date 與 timestamps的差異</title>
-    <url>/charleen-xu.github.io/2020/02/02/timestamp%20%E8%88%87%20dateTime%20%E5%8F%8A%20date%20%E8%88%87%20timestamps%E7%9A%84%E5%B7%AE%E7%95%B0/</url>
-    <content><![CDATA[<h3 id="參考資料：原文-Migrations-timestamp-VS-dateTime-VS-date-VS-timestamps"><a href="#參考資料：原文-Migrations-timestamp-VS-dateTime-VS-date-VS-timestamps" class="headerlink" title="參考資料：原文 / Migrations: timestamp VS dateTime VS date VS timestamps"></a>參考資料：原文 / <a href="https://laracasts.com/discuss/channels/laravel/migrations-timestamp-vs-datetime-vs-date-vs-timestamps?page=0" target="_blank" rel="noopener">Migrations: timestamp VS dateTime VS date VS timestamps</a></h3><p>timestamp and dateTime are similar - they store a date (YYYY-MM-DD) and time (HH:MM:SS) together in a single field i.e. YYYY-MM-DD HH:MM:SS. The difference between the two is that timestamp can use (MySQL’s) CURRENT_TIMESTAMP as its value, whenever the database record is updated. This can be handled at the database level and is great for Laravel’s created_at and updated_at fields.</p>
-<a id="more"></a>
-<blockquote>
-<p><strong>timestamp與dateTime相似-將日期（YYYY-MM-DD）和時間（HH:MM:SS）一起存儲在同個字段，也就是YYYY-MM-DD HH:MM:SS。兩者之間的區別在於，無論何時更新DB記錄，timestamp都可以使用（MySQL）CURRENT_TIMESTAMP作為其值。這可以在資料庫層級進行處理，非常適合Laravel created_at和updated_at字段。</strong></p>
-</blockquote>
-<p>Note also that timestamp has a limit of 1970-01-01 00:00:01 UTC to 2038-01-19 03:14:07 UTC (source), whilst dateTime has a range of 1000-01-01 00:00:00 to 9999-12-31 23:59:59, so consider what you plan on storing in that field before determining which type to use.</p>
-<blockquote>
-<p><strong>還要注意，timestamp它的最大限制為1970-01-01 00:00:01 UTC to 2038-01-19 03:14:07 UTC（source），而最大dateTime範圍為1000-01-01 00:00:00to 9999-12-31 23:59:59，因此在確定使用哪種類型之前，要計劃在該字段中存哪一種型別哦。</strong></p>
-</blockquote>
-<p>date stores just the date component i.e. YYYY-MM-DD (1000-00-01 to 9999-12-31).</p>
-<blockquote>
-<p><strong>date僅存儲日期部分，即YYYY-MM-DD（1000-00-01至9999-12-31）。</strong></p>
-</blockquote>
-<p>timestamps doesn’t take an argument, it’s a shortcut to add the created_at and updated_at timestamp fields to your database.</p>
-<blockquote>
-<p><strong>timestamps不帶引數，這是將created_at和updated_at時間戳記字段添加到資料庫中的捷徑。</strong></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>LearnAndLive</tag>
-        <tag>Laravel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在controller使用部分Faker的方法</title>
-    <url>/charleen-xu.github.io/2020/02/01/%E5%9C%A8controller%E4%BD%BF%E7%94%A8%E9%83%A8%E5%88%86Faker%E7%9A%84%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h3 id="用guzzle取圖書資料＋DB建立部分假資料"><a href="#用guzzle取圖書資料＋DB建立部分假資料" class="headerlink" title="用guzzle取圖書資料＋DB建立部分假資料"></a>用guzzle取圖書資料＋DB建立部分假資料</h3><a id="more"></a>  
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getJson</span><span class="params">(Faker $faker)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $client = <span class="keyword">new</span> \GuzzleHttp\Client();</span><br><span class="line">        $res = $client-&gt;request(<span class="string">'GET'</span>, <span class="string">'http://bookshelf.goodideas-studio.com/api'</span>);</span><br><span class="line"></span><br><span class="line">        $myData = json_decode($res-&gt;getBody()-&gt;getContents(), <span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">foreach</span> ($myData <span class="keyword">as</span> $item) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">foreach</span> ($item <span class="keyword">as</span> $data) &#123;</span><br><span class="line"></span><br><span class="line">            $addNewBookData = Book::create([<span class="string">'image'</span> =&gt; $data[<span class="string">'image'</span>],</span><br><span class="line">                <span class="string">'price'</span> =&gt; intval($data[<span class="string">'originPrice'</span>]),</span><br><span class="line">                <span class="string">'title'</span> =&gt; $data[<span class="string">'name'</span>],</span><br><span class="line">                <span class="string">'ISBN'</span> =&gt; $data[<span class="string">'ISBN'</span>],</span><br><span class="line">                <span class="string">'author'</span> =&gt; $faker-&gt;name,</span><br><span class="line">                <span class="string">'translator'</span> =&gt; $faker-&gt;name,</span><br><span class="line">                <span class="string">'press'</span> =&gt; $faker-&gt;randomElement([<span class="string">'好想出版社'</span>, <span class="string">'促進讀書出版社'</span>, <span class="string">'好書人人讀出版社'</span>, <span class="string">'我只想賺錢出版社'</span>]),</span><br><span class="line">                <span class="string">'intro'</span> =&gt; $faker-&gt;realtext(<span class="number">30</span>),</span><br><span class="line">                <span class="string">'publication_date'</span> =&gt; $faker-&gt;date,</span><br><span class="line">                <span class="string">'language'</span> =&gt; $faker-&gt;randomElement([<span class="string">'中文'</span>, <span class="string">'簡體中文'</span>, <span class="string">'英文'</span>])</span><br><span class="line">            ]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>LearnAndLive</tag>
-        <tag>Faker</tag>
-        <tag>guzzle</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>將foreach印出的資料存成array[ ]</title>
-    <url>/charleen-xu.github.io/2020/01/27/%E5%B0%87foreach%E5%8D%B0%E5%87%BA%E7%9A%84%E8%B3%87%E6%96%99%E5%AD%98%E6%88%90array%5B%20%5D/</url>
-    <content><![CDATA[<h3 id="將User搜尋的圖書紀錄儲存到DB，用foreach遍歷的方式將book-id儲存成array"><a href="#將User搜尋的圖書紀錄儲存到DB，用foreach遍歷的方式將book-id儲存成array" class="headerlink" title="將User搜尋的圖書紀錄儲存到DB，用foreach遍歷的方式將book_id儲存成array"></a>將User搜尋的圖書紀錄儲存到DB，用foreach遍歷的方式將book_id儲存成array</h3><p>count在這裡是用來檢查陣列有多少個元素，foreach遍歷是否有成功</p>
-<a id="more"></a>
-<pre><code class="php"><span class="keyword">foreach</span> ($searchLists <span class="keyword">as</span> $searchList) {
-
-    $authors[] = $searchList-&gt;book_id;
-    $a = count($authors);
-
-    <span class="keyword">continue</span>;
-}
-</code></pre>
-]]></content>
-      <tags>
-        <tag>LearnAndLive</tag>
-        <tag>PHP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>collection的delete限制 不存在Collection::delete用法</title>
-    <url>/charleen-xu.github.io/2020/01/26/collection%E7%9A%84delete%E9%99%90%E5%88%B6%20%E4%B8%8D%E5%AD%98%E5%9C%A8Collection%20delete%E7%94%A8%E6%B3%95/</url>
-    <content><![CDATA[<h3 id="collection不能直接調用delete，除此之外，想要刪除整張表的資料可用truncate"><a href="#collection不能直接調用delete，除此之外，想要刪除整張表的資料可用truncate" class="headerlink" title="collection不能直接調用delete，除此之外，想要刪除整張表的資料可用truncate"></a>collection不能直接調用delete，除此之外，想要刪除整張表的資料可用truncate</h3><p><strong>“message”: “Method Illuminate\Database\Eloquent\Collection::delete does not exist.”</strong></p>
-<a id="more"></a>  
-<ul>
-<li>改利用foreach刪除多筆資料<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">delete</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $user_id = Auth::user()-&gt;id;</span><br><span class="line"></span><br><span class="line">    $deleteHistorySearches = Searches::where(<span class="string">'user_id'</span>, $user_id)-&gt;get();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span> ($deleteHistorySearches <span class="keyword">as</span> $deleteHistorySearch) &#123;</span><br><span class="line"></span><br><span class="line">        $deleteId = $deleteHistorySearch-&gt;id;</span><br><span class="line"></span><br><span class="line">        $deleteData = Searches::where(<span class="string">'id'</span>, $deleteId)-&gt;delete();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> response([<span class="string">'message'</span> =&gt; <span class="string">'Clear all history records'</span>]);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>LearnAndLive</tag>
-        <tag>Laravel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>安裝Guzzle時出現錯誤 [報錯] Your requirements could not be resolved to an installable set of packages.</title>
-    <url>/charleen-xu.github.io/2020/01/15/%E5%AE%89%E8%A3%9DGuzzle%E6%99%82%E5%87%BA%E7%8F%BE%E9%8C%AF%E8%AA%A4/</url>
-    <content><![CDATA[<h3 id="安裝Guzzle時出現錯誤"><a href="#安裝Guzzle時出現錯誤" class="headerlink" title="安裝Guzzle時出現錯誤"></a>安裝Guzzle時出現錯誤</h3><h3 id="官網提供的指令：失敗"><a href="#官網提供的指令：失敗" class="headerlink" title="官網提供的指令：失敗"></a>官網提供的指令：失敗</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> composer require guzzle/guzzle</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/P5cvpAy.png" alt=""></p>
-<h3 id="網上的解決方法：成功"><a href="#網上的解決方法：成功" class="headerlink" title="網上的解決方法：成功"></a>網上的解決方法：成功</h3><ul>
-<li><a href="https://stackoverflow.com/questions/30822897/cant-install-guzzlehttp-for-laravel" target="_blank" rel="noopener">Can’t install guzzlehttp for Laravel
-</a></li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> composer require <span class="string">"guzzlehttp/guzzle"</span></span></span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/QdkEhwz.png" alt=""></p>
-]]></content>
-      <tags>
-        <tag>guzzle</tag>
-        <tag>報錯</tag>
-        <tag>laravel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo裝起來！</title>
-    <url>/charleen-xu.github.io/2019/12/25/Hexo%E8%A3%9D%E8%B5%B7%E4%BE%86%EF%BC%81/</url>
-    <content><![CDATA[<h2 id="環境配置："><a href="#環境配置：" class="headerlink" title="環境配置："></a>環境配置：</h2><h3 id="安裝Node-js"><a href="#安裝Node-js" class="headerlink" title="安裝Node.js"></a>安裝Node.js</h3><p>筆者在安裝來源為Node.js<a href="https://nodejs.org/en/" target="_blank" rel="noopener">官網</a>，嘗試好幾次仍然跳出錯誤。</p>
-<p>依照Hexo官網的指示，輸入下列指令即可</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash</span><br></pre></td></tr></table></figure>
-<a id="more"></a>  
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nvm install node</span><br></pre></td></tr></table></figure>
-
-<p>至於為什麼用nvm，可以查看這篇<a href="https://www.onejar99.com/nvm-install-for-unix-like/" target="_blank" rel="noopener">用nvm install node 安裝Node.js</a></p>
-<h3 id="安裝Hexo-Git"><a href="#安裝Hexo-Git" class="headerlink" title="安裝Hexo Git"></a>安裝Hexo Git</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<p>如果此時報錯提示為<strong>gyp: No Xcode or CLT version detected!(未檢測到Xcode或CLT版本)</strong></p>
-<p>就筆者的當時的處理方式有二：</p>
-<ul>
-<li><p>首先是檢查MacOS是否更新到最新版本，但更新完後輸入上面的指令依然報錯。</p>
-</li>
-<li><p>第二是我原先沒有安裝Xcode，但安裝後又顯示上述報錯，這不是很奇怪？搜尋了一下發現有蠻多人面臨相同問題，大多數的解決方式為<code>sudo xcode-select --install</code>，<a href="https://juejin.im/post/5c73986de51d450dfc6f30e8" target="_blank" rel="noopener">這篇</a>提到可能是Mac升級後，缺了xcode 的CLI 工具，但我輸入這個指令還是有報錯的提示。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[報錯]xcode-select: error: command line tools are already installed, use &quot;Software Update&quot; to install updates</span><br></pre></td></tr></table></figure>
-<p>最後是依據<a href="https://stackoverflow.com/questions/34617452/how-to-update-xcode-from-command-line" target="_blank" rel="noopener">這篇</a>執行<code>sudo rm -rf /Library/Developer/CommandLineTools</code>，移除後<code>xcode-select --install</code>重新執行就成功了。</p>
-</li>
-</ul>
-<p><strong>報錯解決後，重新執行</strong><code>npm install hexo-deployer-git --save</code></p>
-<h3 id="安裝Hexo"><a href="#安裝Hexo" class="headerlink" title="安裝Hexo"></a>安裝Hexo</h3><ul>
-<li><code>npm install hexo-cli -g</code> 或 <code>sudo npm install -g hexo-cli</code></li>
-<li><code>hexo init [部落格名稱]</code></li>
-<li><code>cd [部落格名稱]</code>  # 移至剛創建的資料夾</li>
-<li><code>npm install</code>        # 安裝相關套件</li>
-</ul>
-<h3 id="將Hexo配置到Github上"><a href="#將Hexo配置到Github上" class="headerlink" title="將Hexo配置到Github上"></a>將Hexo配置到Github上</h3><p>登入Github新增一個Repositories，名稱必須為<code>Github帳號名.github.io</code></p>
-<p>回到專案文件夾，點開全域配置文件_config.yml，將文件最下方原先空白的deploy，修改如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deploy: </span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repository: https://github.com/charleen-xu/charleen-xu.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<h5 id="提醒：冒號後一定要空格！"><a href="#提醒：冒號後一定要空格！" class="headerlink" title="提醒：冒號後一定要空格！"></a>提醒：冒號後一定要空格！</h5><blockquote>
-<p>不確定repository的url？到Github看看<br><img src="https://i.imgur.com/RAjPqyx.png" alt=""></p>
-</blockquote>
-<hr>
-<h4 id="產生靜態檔案-generate"><a href="#產生靜態檔案-generate" class="headerlink" title="產生靜態檔案 generate"></a>產生靜態檔案 generate</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo g  # generate</span><br></pre></td></tr></table></figure>
-<p>配置完成後的文章更新方式，參考<a href="https://winney07.github.io/2018/08/02/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/" target="_blank" rel="noopener">在Hexo博客中发布文章</a></p>
-<h4 id="新增Hexo文章"><a href="#新增Hexo文章" class="headerlink" title="新增Hexo文章"></a>新增Hexo文章</h4><blockquote>
-<p>路徑：專案文件夾/source/_posts</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo new 文章名稱</span><br></pre></td></tr></table></figure>
-<p>打開新增該文件， 使用Markdown語法編輯內文</p>
-<h5 id="範例："><a href="#範例：" class="headerlink" title="範例："></a>範例：</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章標題</span><br><span class="line">date: 自動產生日期與時間</span><br><span class="line">tags: 自定義標籤</span><br><span class="line">---</span><br><span class="line">## 內容標題</span><br><span class="line">內文</span><br><span class="line"></span><br><span class="line">&lt;!--more--&gt;  #頁面上顯示Readmore</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="本地測試，啟動server"><a href="#本地測試，啟動server" class="headerlink" title="本地測試，啟動server"></a>本地測試，啟動server</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo s  # server</span><br></pre></td></tr></table></figure>
-
-<p>查看文章與內容是否成功建立，預設是 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p>
-<p>如果出現：<strong>Port 4000 has been used. Try other port instead.</strong><br>開其他的port：<code>hexo server -p 5000</code>即可</p>
-<p><img src="https://i.imgur.com/B5YtGFY.png" alt=""></p>
-<h4 id="部署網站"><a href="#部署網站" class="headerlink" title="部署網站"></a>部署網站</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo d   #deploy</span><br></pre></td></tr></table></figure>
-<p>如果此時你發現報錯，可能是配置文件的空格或註解所導致</p>
-<ul>
-<li><a href="https://www.zhihu.com/question/29437235" target="_blank" rel="noopener">hexo deploy不能用？</a></li>
-<li><a href="https://loesspie.com/2018/02/27/problems-useing-hexo/" target="_blank" rel="noopener">使用hexo时遇到的问题</a></li>
-</ul>
-<p>完成後進到你自己的網站看看 <a href="https://github名稱.github.io/" target="_blank" rel="noopener">https://github名稱.github.io/</a> </p>
-<hr>
-<h2 id="使用主題Next"><a href="#使用主題Next" class="headerlink" title="使用主題Next"></a>使用主題Next</h2><p>參考<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">Next官方網站</a></p>
-<ul>
-<li><p>進到文件 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ cd 你的Hexo文件</span><br></pre></td></tr></table></figure></li>
-<li><p>clone你選擇的主題</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;iissnan&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在全域配置文件將預設主題改為Next</p>
-<blockquote>
-<p>路徑：文件夾/_config.yml</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https:&#x2F;&#x2F;hexo.io&#x2F;plugins&#x2F;</span><br><span class="line">## Themes: https:&#x2F;&#x2F;hexo.io&#x2F;themes&#x2F;</span><br><span class="line">theme: next</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>主題可選擇想要的外觀Scheme，並將註解(#)移除(擇一不能重複)<blockquote>
-<p>路徑：專案文件夾/themes/next/_config.yml</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Schemes</span><br><span class="line">scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line">#scheme: Gemini</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>重新啟動Server :<code>hexo s</code></p>
-<p><strong>完成！</strong></p>
-<p>參考來源：</p>
-<ul>
-<li><a href="https://hexo.io/zh-tw/docs/commands" target="_blank" rel="noopener">Hexo文件</a></li>
-<li><a href="https://medium.com/@bebebobohaha/%E4%BD%BF%E7%94%A8-hexo-gitpage-%E6%90%AD%E5%BB%BA%E5%80%8B%E4%BA%BA-blog-5c6ed52f23db" target="_blank" rel="noopener">如何搭建個人 Blog 使用 Hexo + Gitpage</a></li>
-<li><a href="https://yaoandy107.github.io/hexo-tutorial/" target="_blank" rel="noopener">Hexo+GitHub，新手也可以快速建立部落格</a></li>
-<li><a href="https://gojun.me/2019/06/12/hello-blog/" target="_blank" rel="noopener">欢迎来到我的新博客</a></li>
-<li><a href="https://liuchang.men/2019/03/20/%E8%BF%81%E7%A7%BB%E5%8D%9A%E5%AE%A2%E5%88%B0Hexo(NexT%E4%B8%BB%E9%A2%98)%20+%20GitHub%20Pages/" target="_blank" rel="noopener">遷移博客到Hexo(NexT主題) + GitHub Pages</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>macOS安裝mysql碰到的版本安裝問題</title>
-    <url>/charleen-xu.github.io/2019/12/02/macOS%E5%AE%89%E8%A3%9Dmysql%E7%A2%B0%E5%88%B0%E7%9A%84%E7%89%88%E6%9C%AC%E5%AE%89%E8%A3%9D%E5%95%8F%E9%A1%8C/</url>
-    <content><![CDATA[<p>筆者從Ubuntu跳到macOS後遇到，沒想到版本問題這麼麻煩。<br>結論就是最好是一開始就先把MacOS內建的5.7版本刪除，至少就不會有衝突的問題＠＠</p>
-<a id="more"></a>
-<h3 id="檢查問題"><a href="#檢查問題" class="headerlink" title="檢查問題"></a>檢查問題</h3><ul>
-<li>刪除原本衝突的內建mysql版本–(MacOS內建5.7，用homebrew insatll mysql版本為8.0)</li>
-<li>執行php artisan migrate顯示下列報錯：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Illuminate\Database\QueryException  : SQLSTATE[HY000] [1045] Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password: NO) (SQL: select * from information_schema.tables where table_schema &#x3D; test and table_name &#x3D; migrations and table_type &#x3D; &#39;BASE TABLE&#39;)</span><br><span class="line"></span><br><span class="line"> at &#x2F;Users&#x2F;apple&#x2F;BackGarden&#x2F;vendor&#x2F;laravel&#x2F;framework&#x2F;src&#x2F;Illuminate&#x2F;Database&#x2F;Connection.php:665</span><br><span class="line">   661|         &#x2F;&#x2F; If an exception occurs when attempting to run a query, we&#39;ll format the error</span><br><span class="line">   662|         &#x2F;&#x2F; message to include the bindings with SQL, which will make this exception a</span><br><span class="line">   663|         &#x2F;&#x2F; lot more helpful to the developer instead of just the database&#39;s errors.</span><br><span class="line">   664|         catch (Exception $e) &#123;</span><br><span class="line"> &gt; 665|             throw new QueryException(</span><br><span class="line">   666|                 $query, $this-&gt;prepareBindings($bindings), $e</span><br><span class="line">   667|             );</span><br><span class="line">   668|         &#125;</span><br><span class="line">   669| </span><br><span class="line"></span><br><span class="line"> Exception trace:</span><br><span class="line"></span><br><span class="line"> 1   PDOException::(&quot;SQLSTATE[HY000] [1045] Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password: NO)&quot;)</span><br><span class="line">     &#x2F;Users&#x2F;apple&#x2F;BackGarden&#x2F;vendor&#x2F;laravel&#x2F;framework&#x2F;src&#x2F;Illuminate&#x2F;Database&#x2F;Connectors&#x2F;Connector.php:70</span><br><span class="line"></span><br><span class="line"> 2   PDO::__construct(&quot;mysql:host&#x3D;127.0.0.1;port&#x3D;3306;dbname&#x3D;test&quot;, &quot;root&quot;, &quot;&quot;, [])</span><br><span class="line">     &#x2F;Users&#x2F;apple&#x2F;BackGarden&#x2F;vendor&#x2F;laravel&#x2F;framework&#x2F;src&#x2F;Illuminate&#x2F;Database&#x2F;Connectors&#x2F;Connector.php:70</span><br><span class="line"></span><br><span class="line"> Please use the argument -v to see more details.</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<h3 id="為了確定連線問題，新建一個php檔連線"><a href="#為了確定連線問題，新建一個php檔連線" class="headerlink" title="為了確定連線問題，新建一個php檔連線"></a>為了確定連線問題，新建一個php檔連線</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">111.php</span><br><span class="line">&lt;?php</span><br><span class="line">$servername &#x3D; &quot;localhost&quot;;</span><br><span class="line">$username &#x3D; &quot;username&quot;;</span><br><span class="line">$password &#x3D; &quot;password&quot;;</span><br><span class="line">&#x2F;&#x2F; Create connection</span><br><span class="line">$conn &#x3D; new mysqli($servername, $username, $password);</span><br><span class="line">&#x2F;&#x2F; Check connection</span><br><span class="line">if ($conn-&gt;connect_error) &#123;</span><br><span class="line">    die(&quot;Connection failed: &quot; . $conn-&gt;connect_error);</span><br><span class="line">&#125;</span><br><span class="line">echo &quot;Connected successfully&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-<p>執行php 111.php<br>顯示：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Charleen@CharleendeMacBook-Pro BackGarden % php ttt.php</span><br><span class="line">PHP Warning:  mysqli::__construct(): Unexpected server response while doing caching_sha2 auth: 109 in &#x2F;Users&#x2F;apple&#x2F;BackGarden&#x2F;ttt.php on line 6</span><br><span class="line"></span><br><span class="line">Warning: mysqli::__construct(): Unexpected server response while doing caching_sha2 auth: 109 in &#x2F;Users&#x2F;apple&#x2F;BackGarden&#x2F;ttt.php on line 6</span><br><span class="line"></span><br><span class="line">關鍵：Unexpected server response while doing caching_sha2 auth</span><br></pre></td></tr></table></figure>
-
-<h3 id="在mysql輸入show-variables-like-‘default-authentication-plugin"><a href="#在mysql輸入show-variables-like-‘default-authentication-plugin" class="headerlink" title="在mysql輸入show variables like ‘default_authentication_plugin;"></a>在mysql輸入show variables like ‘default_authentication_plugin;</h3><p>發現<code>caching_sha2_password</code>，為<strong>mysql8.0後出現的身份驗證插件</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">+-------------------------------+-----------------------+</span><br><span class="line">| Variable_name                 | Value                 |</span><br><span class="line">+-------------------------------+-----------------------+</span><br><span class="line">| default_authentication_plugin | caching_sha2_password |</span><br><span class="line">+-------------------------------+-----------------------+</span><br></pre></td></tr></table></figure>
-
-<p>在mysql輸入<code>ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;password&#39;;</code></p>
-<blockquote>
-<p>這裡的password我改成0000</p>
-</blockquote>
-<p>==mysql8的加密方式Laravel不支援(請見來源2)==，導致migrate不成功，必須更改回<code>mysql_native_password</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">+-------------------------------+-----------------------+</span><br><span class="line">| Variable_name                 | Value                 |</span><br><span class="line">+-------------------------------+-----------------------+</span><br><span class="line">| default_authentication_plugin | mysql_native_password |</span><br><span class="line">+-------------------------------+-----------------------+</span><br></pre></td></tr></table></figure>
-<h3 id="重啟mysql-server-restart"><a href="#重啟mysql-server-restart" class="headerlink" title="重啟mysql.server restart"></a>重啟<code>mysql.server restart</code></h3><p>確認database connection狀態是否OK，到phpstrom執行<code>php artisan migrate</code></p>
-<p>success!</p>
-<hr>
-<p>參考來源:</p>
-<ol>
-<li>Sarah經驗傳授</li>
-<li>. <a href="https://laracasts.com/discuss/channels/laravel/caching-sha2-password-error-when-running-php-artisan-migrate" target="_blank" rel="noopener">[caching_sha2_password] error when running php artisan migrate</a></li>
-<li><a href="https://1c7.me/mysql-8-connect-error-2018/" target="_blank" rel="noopener">（解决方法）MySQL 8 + macOS 错误：Authentication plugin ‘caching_sha2_password’ cannot be loaded</a></li>
-<li><a href="https://www.twblogs.net/a/5d091671bd9eee1e5c81325c" target="_blank" rel="noopener">Mac下Mysql：Authentication plugin ‘caching_sha2_password’ cannot be loaded</a></li>
-<li><a href="https://parkerro.tw/mysql-8-0-client-problem/" target="_blank" rel="noopener">MySQL 8.0 Client 連線問題</a></li>
-<li><a href="https://www.itread01.com/content/1531994533.html" target="_blank" rel="noopener">MySQL8.0新特性——默認使用caching_sha2_password作為身份驗證插件</a></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>MacOS</tag>
-      </tags>
-  </entry>
+<search> 
+  
+  
+    
+    <entry>
+      <title>【報錯】The only supported ciphers are AES-128-CBC and AES-256-CBC with the correct key lengths.</title>
+      <link href="/charleen-xu.github.io/2020/02/20/%5B%E5%A0%B1%E9%8C%AF%5D%20The%20only%20supported%20ciphers%20are%20AES-128-CBC%20and%20AES-256-CBC%20with%20the%20correct%20key%20lengths./"/>
+      <url>/charleen-xu.github.io/2020/02/20/%5B%E5%A0%B1%E9%8C%AF%5D%20The%20only%20supported%20ciphers%20are%20AES-128-CBC%20and%20AES-256-CBC%20with%20the%20correct%20key%20lengths./</url>
+      
+        <content type="html"><![CDATA[<h3 id="運行laravel後歡迎頁面出現報錯，頓時心慌，查了一下還好有解。"><a href="#運行laravel後歡迎頁面出現報錯，頓時心慌，查了一下還好有解。" class="headerlink" title="運行laravel後歡迎頁面出現報錯，頓時心慌，查了一下還好有解。"></a>運行laravel後歡迎頁面出現報錯，頓時心慌，查了一下還好有解。</h3><p><img src="https://i.imgur.com/T7M3isw.png" alt=""></p><a id="more"></a><p><img src="https://i.imgur.com/BtUfIkQ.png" alt=""></p><p>參考解法：<a href="https://blog.goodjack.tw/2017/03/laravel-clone.html" target="_blank" rel="noopener">Laravel 專案從 GitHub clone 下來後要做什麼？</a></p><p>問題出現的原因，推測是有些動作還沒完成就進行<code>php artisan serve</code></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php artisan config:clear</span></span><br></pre></td></tr></table></figure><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php artisan key:generate</span></span><br></pre></td></tr></table></figure><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php artisan serve</span></span><br></pre></td></tr></table></figure><p>成功解決！</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 報錯 </tag>
+            
+            <tag> laravel </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>解決Laravel CORS的方法--laravel-cors(舊版已不適用，開發者已更新至1.0.1)</title>
+      <link href="/charleen-xu.github.io/2020/02/15/%E8%A7%A3%E6%B1%BALaravel%20CORS%E7%9A%84%E6%96%B9%E6%B3%95--laravel-cors(%E8%88%8A%E7%89%88%E5%B7%B2%E4%B8%8D%E9%81%A9%E7%94%A8%EF%BC%8C%E9%96%8B%E7%99%BC%E8%80%85%E5%B7%B2%E6%9B%B4%E6%96%B0%E8%87%B31.0.1)/"/>
+      <url>/charleen-xu.github.io/2020/02/15/%E8%A7%A3%E6%B1%BALaravel%20CORS%E7%9A%84%E6%96%B9%E6%B3%95--laravel-cors(%E8%88%8A%E7%89%88%E5%B7%B2%E4%B8%8D%E9%81%A9%E7%94%A8%EF%BC%8C%E9%96%8B%E7%99%BC%E8%80%85%E5%B7%B2%E6%9B%B4%E6%96%B0%E8%87%B31.0.1)/</url>
+      
+        <content type="html"><![CDATA[<h3 id="舊版-不要使用"><a href="#舊版-不要使用" class="headerlink" title="舊版(不要使用)"></a>舊版(不要使用)</h3><p><a href="https://github.com/barryvdh/laravel-cors" target="_blank" rel="noopener">https://github.com/barryvdh/laravel-cors</a></p><a id="more"></a><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">You also need to add Cors\ServiceProvider to your config/app.php providers <span class="keyword">array</span>:</span><br><span class="line"></span><br><span class="line">Barryvdh\Cors\ServiceProvider::class,</span><br><span class="line"><span class="keyword">Global</span> usage</span><br><span class="line">To allow CORS for all your routes, add the HandleCors middleware in the $middleware property of app/Http/Kernel.php class:</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span> $middleware = [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    \Barryvdh\Cors\HandleCors::class,</span><br><span class="line">];</span><br><span class="line">Group middleware</span><br><span class="line"><span class="keyword">If</span> you want to allow CORS on a specific middleware group <span class="keyword">or</span> route, add the HandleCors middleware to your group:</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span> $middlewareGroups = [</span><br><span class="line">    <span class="string">'web'</span> =&gt; [</span><br><span class="line">       <span class="comment">// ...</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    <span class="string">'api'</span> =&gt; [</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        \Barryvdh\Cors\HandleCors::class,</span><br><span class="line">    ],</span><br><span class="line">];</span><br></pre></td></tr></table></figure><h3 id="新版"><a href="#新版" class="headerlink" title="新版"></a>新版</h3><p><a href="https://github.com/fruitcake/laravel-cors" target="_blank" rel="noopener">https://github.com/fruitcake/laravel-cors</a></p><p>開發者更新的訊息：</p><h4 id="Upgrading-from-0-x-2019-12-30更新至1-0-1"><a href="#Upgrading-from-0-x-2019-12-30更新至1-0-1" class="headerlink" title="Upgrading from 0.x(2019/12/30更新至1.0.1)"></a>Upgrading from 0.x(2019/12/30更新至1.0.1)</h4><p>The vendor name has changed (see installation/usage)</p><blockquote><p>供應商名稱已更改（請參閱安裝/用法）</p></blockquote><p>Group middleware is no longer supported.</p><blockquote><p>不再使用Group middleware。</p></blockquote><p>A new ‘paths’ property is used to enable/disable CORS on certain routes. This is empty by default!</p><blockquote><p>新的“ paths”屬性用於在某些路由上啟用/禁用CORS。默認情況下為空！</p></blockquote><h4 id="在composer-json中需要fruitcake-laravel-cors軟件包，並更新依賴項："><a href="#在composer-json中需要fruitcake-laravel-cors軟件包，並更新依賴項：" class="headerlink" title="在composer.json中需要fruitcake / laravel-cors軟件包，並更新依賴項："></a>在composer.json中需要fruitcake / laravel-cors軟件包，並更新依賴項：</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> composer require fruitcake/laravel-cors</span></span><br></pre></td></tr></table></figure><h4 id="要允許所有路線使用CORS"><a href="#要允許所有路線使用CORS" class="headerlink" title="要允許所有路線使用CORS"></a>要允許所有路線使用CORS</h4><p>請在app / Http / Kernel.php類的$ middleware屬性中添加HandleCors中間件：</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> $middleware = [</span><br><span class="line">    \App\Http\Middleware\TrustProxies::class,</span><br><span class="line">    \App\Http\Middleware\CheckForMaintenanceMode::class,</span><br><span class="line">    \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,</span><br><span class="line">    \App\Http\Middleware\TrimStrings::class,</span><br><span class="line">    \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,</span><br><span class="line">    \App\Http\Middleware\TestLog::class,</span><br><span class="line">    \Fruitcake\Cors\HandleCors::class, <span class="comment">//cors</span></span><br><span class="line">];</span><br></pre></td></tr></table></figure><h4 id="現在到config-cors-php更新配置，以定義要在其上運行CORS服務的路徑（請參閱下面的配置）："><a href="#現在到config-cors-php更新配置，以定義要在其上運行CORS服務的路徑（請參閱下面的配置）：" class="headerlink" title="現在到config/cors.php更新配置，以定義要在其上運行CORS服務的路徑（請參閱下面的配置）："></a>現在到config/cors.php更新配置，以定義要在其上運行CORS服務的路徑（請參閱下面的配置）：</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'paths'</span> =&gt; [<span class="string">'*'</span>],</span><br><span class="line"><span class="comment">//原先用文件中的配置，前端反應cors沒有改善，改以上面全域解決(但危險)</span></span><br></pre></td></tr></table></figure><h4 id="默認值在config-cors-php中設置。發布配置以將文件複製到您自己的配置中："><a href="#默認值在config-cors-php中設置。發布配置以將文件複製到您自己的配置中：" class="headerlink" title="默認值在config / cors.php中設置。發布配置以將文件複製到您自己的配置中："></a>默認值在config / cors.php中設置。發布配置以將文件複製到您自己的配置中：</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php artisan vendor:publish --tag=<span class="string">"cors"</span></span></span><br></pre></td></tr></table></figure><p>Note: When using custom headers, like X-Auth-Token or X-Requested-With, you must set the allowed_headers to include those headers. You can also set it to [‘*’] to allow all custom headers.</p><blockquote><p>注意：使用自定義標頭（例如X-Auth-Token或X-Requested-With）時，必須設置允許的標頭以包含那些標頭。您也可以將其設置為[‘*’]以允許所有自定義標頭。</p></blockquote><p>Note: If you are explicitly whitelisting headers, you must include Origin or requests will fail to be recognized as CORS.</p><blockquote><p>注意：如果您明確將標頭列入白名單，則必須包含Origin，否則請求將不會被識別為CORS。</p></blockquote><p><strong>allowed_origins, allowed_headers and allowed_methods</strong> can be set to [‘*’] to accept any value.</p><p>Note: Because of http method overriding in Laravel, allowing POST methods will also enable the API users to perform PUT and DELETE requests as well.</p><blockquote><p>注意：由於Laravel中重寫了http方法，因此允許POST方法還將使API用戶也可以執行PUT和DELETE請求。</p></blockquote>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LearnAndLive </tag>
+            
+            <tag> Laravel </tag>
+            
+            <tag> CORS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>實作二 Laravel + Botman製作Facebook Messenger Chatbot</title>
+      <link href="/charleen-xu.github.io/2020/02/10/%E5%AF%A6%E4%BD%9C%E4%BA%8C%20Laravel%20%20Botman%E8%A3%BD%E4%BD%9CFacebook%20Messenger%20Chatbot/"/>
+      <url>/charleen-xu.github.io/2020/02/10/%E5%AF%A6%E4%BD%9C%E4%BA%8C%20Laravel%20%20Botman%E8%A3%BD%E4%BD%9CFacebook%20Messenger%20Chatbot/</url>
+      
+        <content type="html"><![CDATA[<h3 id="延續實作一，創造Facebook-Messenger-Chatbot"><a href="#延續實作一，創造Facebook-Messenger-Chatbot" class="headerlink" title="延續實作一，創造Facebook Messenger Chatbot"></a>延續實作一，創造Facebook Messenger Chatbot</h3><ul><li>設定driver</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php artisan botman:install-driver facebook</span></span><br></pre></td></tr></table></figure><a id="more"></a><ul><li>查看是否如下圖被打勾<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php artisan botman:list-drivers</span></span><br></pre></td></tr></table></figure><img src="https://i.imgur.com/yO9v6Bx.png" alt=""></li></ul><h4 id="你需要這三個參數，請跟隨接下來的指示："><a href="#你需要這三個參數，請跟隨接下來的指示：" class="headerlink" title="你需要這三個參數，請跟隨接下來的指示："></a>你需要這三個參數，請跟隨接下來的指示：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FACEBOOK_TOKEN &#x3D; YOUR_APP_FACEBOOK_PAGE_TOKEN</span><br><span class="line">FACEBOOK_APP_SECRET &#x3D; YOUR_APP_SECRET</span><br><span class="line">FACEBOOK_VERIFICATION &#x3D; YOUR_VERIFICATION</span><br></pre></td></tr></table></figure><h4 id="設置Facebook-App"><a href="#設置Facebook-App" class="headerlink" title="設置Facebook App"></a>設置Facebook App</h4><ul><li><p>首先，你需要有新建一個用來測試的粉絲專頁</p></li><li><p>接著進入 <a href="https://developers.facebook.com/?locale=zh_TW" target="_blank" rel="noopener">https://developers.facebook.com/?locale=zh_TW</a></p></li></ul><p><img src="https://i.imgur.com/5ab8hAC.png" alt=""></p><ul><li><p>輸入名稱與連絡電子郵件<br><img src="https://i.imgur.com/CEphnai.png" alt=""></p></li><li><p>選擇Messenger-&gt;按下設定</p></li></ul><p><img src="https://i.imgur.com/CaTvlA3.png" alt=""></p><ul><li>產品-&gt;Messenger-&gt;設定-&gt;按下新增粉絲專頁</li></ul><p><img src="https://i.imgur.com/HIzEycb.png" alt=""></p><ul><li>以你的身份繼續認證，選擇你建立的測試粉絲專頁</li></ul><p><img src="https://i.imgur.com/qpQTLTZ.png" alt=""></p><ul><li>產品-&gt;Messenger-&gt;設定-&gt;按下產生權杖：得到FACEBOOK_TOKEN = YOUR_APP_FACEBOOK_PAGE_TOKEN</li></ul><p><img src="https://i.imgur.com/KM7LMcx.png" alt=""></p><ul><li><p>左側設定-&gt;基本資料：得到FACEBOOK_APP_SECRET = YOUR_APP_SECRET</p></li><li><p>將前面反向代理拿到的ngrok暫時 https 貼到應用程式網域(server必須要提供https)</p></li></ul><p><img src="https://i.imgur.com/PftAuvg.png" alt=""></p><ul><li>產品-&gt;Messenger-&gt;設定-&gt;點選編輯回呼網址：得到FACEBOOK_VERIFICATION = YOUR_VERIFICATION</li></ul><p><img src="https://i.imgur.com/KWibZL1.png" alt=""></p><h3 id="注意"><a href="#注意" class="headerlink" title="[注意]"></a>[注意]</h3><p>原本編輯粉絲專頁訂閱位在設置webhook下方，改版後變成要先新增webhook，完成此步驟後會出現右下方的新增訂閱。</p><blockquote><p>一直找不到才發現改版了qq<br><img src="https://i.imgur.com/n4f8sAo.png" alt=""></p></blockquote><ul><li>勾選訂閱欄位的messages 與 messaging_postbacks</li></ul><p><img src="https://i.imgur.com/LhpCVBb.png" alt=""></p><ul><li>設定完成</li></ul><p><img src="https://i.imgur.com/Cx4rEnP.png" alt=""></p><h4 id="將這三個必要的環境變數放入-env"><a href="#將這三個必要的環境變數放入-env" class="headerlink" title="將這三個必要的環境變數放入.env"></a>將這三個必要的環境變數放入.env</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FACEBOOK_TOKEN &#x3D; ＊＊＊＊＊＊</span><br><span class="line">FACEBOOK_APP_SECRET &#x3D; ＊＊＊＊＊＊</span><br><span class="line">FACEBOOK_VERIFICATION &#x3D; ＊＊＊＊＊＊</span><br></pre></td></tr></table></figure><h3 id="測試-Charleentestbotman"><a href="#測試-Charleentestbotman" class="headerlink" title="測試 Charleentestbotman"></a>測試 Charleentestbotman</h3><p><img src="https://i.imgur.com/l05hjpB.png" alt=""></p><p>:smile: 終於成功啦！！！！！</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Laravel </tag>
+            
+            <tag> chatbot </tag>
+            
+            <tag> Facebook Messenger Chatbot </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>實作一 Laravel + Botman製作Messenger Chatbot</title>
+      <link href="/charleen-xu.github.io/2020/02/10/Laravel%20+%20Botman%E8%A3%BD%E4%BD%9CMessenger%20Chatbot/"/>
+      <url>/charleen-xu.github.io/2020/02/10/Laravel%20+%20Botman%E8%A3%BD%E4%BD%9CMessenger%20Chatbot/</url>
+      
+        <content type="html"><![CDATA[<p>[文件] <a href="https://botman.io/2.0/botman-studio" target="_blank" rel="noopener">BotMan Studio</a></p><p>[參考來源]：<br><a href="https://morioh.com/p/a70505b642e4" target="_blank" rel="noopener">Building a Chatbot with Botman and Laravel</a><br><a href="https://chatbotsmagazine.com/build-a-facebook-messenger-chatbot-in-laravel-with-botman-studio-2-0-b84c0855f51f" target="_blank" rel="noopener">Build a Facebook Messenger Chatbot in Laravel with BotMan Studio 2.0</a></p><p>版本：<br>PHP 7.3.14 </p><a id="more"></a><ul><li>實作一 <a href="https://kanchengzxdfgcv.blogspot.com/2019/03/php-botman.html" target="_blank" rel="noopener">PHP 聊天機器人記錄 - Botman</a></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer global require "botman/installer" (失敗，下一個)</span><br></pre></td></tr></table></figure><p>or</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require botman/botman</span><br></pre></td></tr></table></figure><ul><li>新增一個測試專案<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer create-project --prefer-dist botman/studio 專案名稱</span><br></pre></td></tr></table></figure></li><li>打開專案-&gt;<code>route</code>下的<code>botman.php</code></li></ul><p><img src="https://i.imgur.com/klWGXx2.png" alt=""></p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Controllers</span>\<span class="title">BotManController</span>;</span><br><span class="line"></span><br><span class="line">$botman = resolve(<span class="string">'botman'</span>);</span><br><span class="line"></span><br><span class="line">$botman-&gt;hears(<span class="string">'Hi'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($bot)</span> </span>&#123; <span class="comment">#聽到</span></span><br><span class="line">    $bot-&gt;reply(<span class="string">'Hello!'</span>); <span class="comment">#回覆</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$botman-&gt;hears(<span class="string">'今天'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($bot)</span> </span>&#123;</span><br><span class="line">    $bot-&gt;reply(<span class="string">'哦對'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">#自行複製輸入</span></span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line"></span><br><span class="line">$botman-&gt;hears(<span class="string">'Start conversation'</span>, BotManController::class.<span class="string">'@startConversation'</span>);</span><br></pre></td></tr></table></figure><ul><li>到<code>BotManController.php</code>，我們來修改一下</li></ul><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $botman = app(<span class="string">'botman'</span>);</span><br><span class="line"></span><br><span class="line">        $botman-&gt;hears(<span class="string">'&#123;message&#125;'</span>, <span class="function"><span class="keyword">function</span><span class="params">($botman, $message)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> ($message == <span class="string">'你好'</span>) &#123;</span><br><span class="line">                <span class="keyword">$this</span>-&gt;askName($botman);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        $botman-&gt;listen();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">askName</span><span class="params">($botman)</span> #新增</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $botman-&gt;ask(<span class="string">'Hello! 請報上大名'</span>, <span class="function"><span class="keyword">function</span><span class="params">(Answer $answer)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            $name = $answer-&gt;getText();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">$this</span>-&gt;say($name . <span class="string">'今天過得如何？可以跟我分享嗎 '</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><ul><li>啟動本地server <a href="http://127.0.0.1:8000" target="_blank" rel="noopener">http://127.0.0.1:8000</a></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> php artisan serve</span></span><br></pre></td></tr></table></figure><h2 id="ngrok-把localhost-對應到-https-public-domain-的服務"><a href="#ngrok-把localhost-對應到-https-public-domain-的服務" class="headerlink" title="ngrok : 把localhost 對應到 https public domain 的服務"></a>ngrok : 把localhost 對應到 https public domain 的服務</h2><p>[ Ngrok 文件 ] <a href="https://ngrok.com/docs" target="_blank" rel="noopener">Documentation</a></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ngrok http 8000</span></span><br></pre></td></tr></table></figure><ul><li>得到暫時的https public domain(反白處)</li></ul><p><img src="https://i.imgur.com/bnaFMRv.png" alt=""></p><ul><li>也可以在網頁上查看，ngrok提供Inspecting your traffic，輸入<code>http://localhost:4040</code></li></ul><p><img src="https://i.imgur.com/PfN05KF.png" alt=""></p><ul><li>首頁：</li></ul><p><img src="https://i.imgur.com/bIGSZMp.jpg" alt=""></p><p>輸入：<code>https://068b3aa9.ngrok.io/botman/tinker</code></p><ul><li>在空白欄位處開始測試</li></ul><p><img src="https://i.imgur.com/Ksr4YZ1.png" alt=""></p><p>成功返回訊息！</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Laravel </tag>
+            
+            <tag> chatbot </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>orderby() 、 take() 用法</title>
+      <link href="/charleen-xu.github.io/2020/02/04/orderby()%20%E3%80%81%20take()%20%E7%94%A8%E6%B3%95/"/>
+      <url>/charleen-xu.github.io/2020/02/04/orderby()%20%E3%80%81%20take()%20%E7%94%A8%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<h3 id="oderby-排序"><a href="#oderby-排序" class="headerlink" title="oderby():排序"></a>oderby():排序</h3><p>ASC 由小往大的順序列出，而 DESC 由大往小的順序列出。 如果兩者沒有被寫出就會用 ASC。</p><h3 id="take-指定數量"><a href="#take-指定數量" class="headerlink" title="take():指定數量"></a>take():指定數量</h3><pre><code class="php">$userHistoryRecords = Searches::where(<span class="string">'user_id'</span>,$user_id)-&gt;orderBy(<span class="string">'created_at'</span>, <span class="string">'asc'</span>)-&gt;take(<span class="number">5</span>)-&gt;get();</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LearnAndLive </tag>
+            
+            <tag> Laravel </tag>
+            
+            <tag> Mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>timestamp 與 dateTime 及 date 與 timestamps的差異</title>
+      <link href="/charleen-xu.github.io/2020/02/02/timestamp%20%E8%88%87%20dateTime%20%E5%8F%8A%20date%20%E8%88%87%20timestamps%E7%9A%84%E5%B7%AE%E7%95%B0/"/>
+      <url>/charleen-xu.github.io/2020/02/02/timestamp%20%E8%88%87%20dateTime%20%E5%8F%8A%20date%20%E8%88%87%20timestamps%E7%9A%84%E5%B7%AE%E7%95%B0/</url>
+      
+        <content type="html"><![CDATA[<h3 id="參考資料：原文-Migrations-timestamp-VS-dateTime-VS-date-VS-timestamps"><a href="#參考資料：原文-Migrations-timestamp-VS-dateTime-VS-date-VS-timestamps" class="headerlink" title="參考資料：原文 / Migrations: timestamp VS dateTime VS date VS timestamps"></a>參考資料：原文 / <a href="https://laracasts.com/discuss/channels/laravel/migrations-timestamp-vs-datetime-vs-date-vs-timestamps?page=0" target="_blank" rel="noopener">Migrations: timestamp VS dateTime VS date VS timestamps</a></h3><p>timestamp and dateTime are similar - they store a date (YYYY-MM-DD) and time (HH:MM:SS) together in a single field i.e. YYYY-MM-DD HH:MM:SS. The difference between the two is that timestamp can use (MySQL’s) CURRENT_TIMESTAMP as its value, whenever the database record is updated. This can be handled at the database level and is great for Laravel’s created_at and updated_at fields.</p><a id="more"></a><blockquote><p><strong>timestamp與dateTime相似-將日期（YYYY-MM-DD）和時間（HH:MM:SS）一起存儲在同個字段，也就是YYYY-MM-DD HH:MM:SS。兩者之間的區別在於，無論何時更新DB記錄，timestamp都可以使用（MySQL）CURRENT_TIMESTAMP作為其值。這可以在資料庫層級進行處理，非常適合Laravel created_at和updated_at字段。</strong></p></blockquote><p>Note also that timestamp has a limit of 1970-01-01 00:00:01 UTC to 2038-01-19 03:14:07 UTC (source), whilst dateTime has a range of 1000-01-01 00:00:00 to 9999-12-31 23:59:59, so consider what you plan on storing in that field before determining which type to use.</p><blockquote><p><strong>還要注意，timestamp它的最大限制為1970-01-01 00:00:01 UTC to 2038-01-19 03:14:07 UTC（source），而最大dateTime範圍為1000-01-01 00:00:00to 9999-12-31 23:59:59，因此在確定使用哪種類型之前，要計劃在該字段中存哪一種型別哦。</strong></p></blockquote><p>date stores just the date component i.e. YYYY-MM-DD (1000-00-01 to 9999-12-31).</p><blockquote><p><strong>date僅存儲日期部分，即YYYY-MM-DD（1000-00-01至9999-12-31）。</strong></p></blockquote><p>timestamps doesn’t take an argument, it’s a shortcut to add the created_at and updated_at timestamp fields to your database.</p><blockquote><p><strong>timestamps不帶引數，這是將created_at和updated_at時間戳記字段添加到資料庫中的捷徑。</strong></p></blockquote>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LearnAndLive </tag>
+            
+            <tag> Laravel </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>在controller使用部分Faker的方法</title>
+      <link href="/charleen-xu.github.io/2020/02/01/%E5%9C%A8controller%E4%BD%BF%E7%94%A8%E9%83%A8%E5%88%86Faker%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+      <url>/charleen-xu.github.io/2020/02/01/%E5%9C%A8controller%E4%BD%BF%E7%94%A8%E9%83%A8%E5%88%86Faker%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<h3 id="用guzzle取圖書資料＋DB建立部分假資料"><a href="#用guzzle取圖書資料＋DB建立部分假資料" class="headerlink" title="用guzzle取圖書資料＋DB建立部分假資料"></a>用guzzle取圖書資料＋DB建立部分假資料</h3><a id="more"></a>  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getJson</span><span class="params">(Faker $faker)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        $client = <span class="keyword">new</span> \GuzzleHttp\Client();</span><br><span class="line">        $res = $client-&gt;request(<span class="string">'GET'</span>, <span class="string">'http://bookshelf.goodideas-studio.com/api'</span>);</span><br><span class="line"></span><br><span class="line">        $myData = json_decode($res-&gt;getBody()-&gt;getContents(), <span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">foreach</span> ($myData <span class="keyword">as</span> $item) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">foreach</span> ($item <span class="keyword">as</span> $data) &#123;</span><br><span class="line"></span><br><span class="line">            $addNewBookData = Book::create([<span class="string">'image'</span> =&gt; $data[<span class="string">'image'</span>],</span><br><span class="line">                <span class="string">'price'</span> =&gt; intval($data[<span class="string">'originPrice'</span>]),</span><br><span class="line">                <span class="string">'title'</span> =&gt; $data[<span class="string">'name'</span>],</span><br><span class="line">                <span class="string">'ISBN'</span> =&gt; $data[<span class="string">'ISBN'</span>],</span><br><span class="line">                <span class="string">'author'</span> =&gt; $faker-&gt;name,</span><br><span class="line">                <span class="string">'translator'</span> =&gt; $faker-&gt;name,</span><br><span class="line">                <span class="string">'press'</span> =&gt; $faker-&gt;randomElement([<span class="string">'好想出版社'</span>, <span class="string">'促進讀書出版社'</span>, <span class="string">'好書人人讀出版社'</span>, <span class="string">'我只想賺錢出版社'</span>]),</span><br><span class="line">                <span class="string">'intro'</span> =&gt; $faker-&gt;realtext(<span class="number">30</span>),</span><br><span class="line">                <span class="string">'publication_date'</span> =&gt; $faker-&gt;date,</span><br><span class="line">                <span class="string">'language'</span> =&gt; $faker-&gt;randomElement([<span class="string">'中文'</span>, <span class="string">'簡體中文'</span>, <span class="string">'英文'</span>])</span><br><span class="line">            ]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LearnAndLive </tag>
+            
+            <tag> Faker </tag>
+            
+            <tag> guzzle </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>將foreach印出的資料存成array[ ]</title>
+      <link href="/charleen-xu.github.io/2020/01/27/%E5%B0%87foreach%E5%8D%B0%E5%87%BA%E7%9A%84%E8%B3%87%E6%96%99%E5%AD%98%E6%88%90array%5B%20%5D/"/>
+      <url>/charleen-xu.github.io/2020/01/27/%E5%B0%87foreach%E5%8D%B0%E5%87%BA%E7%9A%84%E8%B3%87%E6%96%99%E5%AD%98%E6%88%90array%5B%20%5D/</url>
+      
+        <content type="html"><![CDATA[<h3 id="將User搜尋的圖書紀錄儲存到DB，用foreach遍歷的方式將book-id儲存成array"><a href="#將User搜尋的圖書紀錄儲存到DB，用foreach遍歷的方式將book-id儲存成array" class="headerlink" title="將User搜尋的圖書紀錄儲存到DB，用foreach遍歷的方式將book_id儲存成array"></a>將User搜尋的圖書紀錄儲存到DB，用foreach遍歷的方式將book_id儲存成array</h3><p>count在這裡是用來檢查陣列有多少個元素，foreach遍歷是否有成功</p><a id="more"></a><pre><code class="php"><span class="keyword">foreach</span> ($searchLists <span class="keyword">as</span> $searchList) {    $authors[] = $searchList-&gt;book_id;    $a = count($authors);    <span class="keyword">continue</span>;}</code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LearnAndLive </tag>
+            
+            <tag> PHP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>collection的delete限制 不存在Collection::delete用法</title>
+      <link href="/charleen-xu.github.io/2020/01/26/collection%E7%9A%84delete%E9%99%90%E5%88%B6%20%E4%B8%8D%E5%AD%98%E5%9C%A8Collection%20delete%E7%94%A8%E6%B3%95/"/>
+      <url>/charleen-xu.github.io/2020/01/26/collection%E7%9A%84delete%E9%99%90%E5%88%B6%20%E4%B8%8D%E5%AD%98%E5%9C%A8Collection%20delete%E7%94%A8%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<h3 id="collection不能直接調用delete，除此之外，想要刪除整張表的資料可用truncate"><a href="#collection不能直接調用delete，除此之外，想要刪除整張表的資料可用truncate" class="headerlink" title="collection不能直接調用delete，除此之外，想要刪除整張表的資料可用truncate"></a>collection不能直接調用delete，除此之外，想要刪除整張表的資料可用truncate</h3><p><strong>“message”: “Method Illuminate\Database\Eloquent\Collection::delete does not exist.”</strong></p><a id="more"></a>  <ul><li>改利用foreach刪除多筆資料<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">delete</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $user_id = Auth::user()-&gt;id;</span><br><span class="line"></span><br><span class="line">    $deleteHistorySearches = Searches::where(<span class="string">'user_id'</span>, $user_id)-&gt;get();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span> ($deleteHistorySearches <span class="keyword">as</span> $deleteHistorySearch) &#123;</span><br><span class="line"></span><br><span class="line">        $deleteId = $deleteHistorySearch-&gt;id;</span><br><span class="line"></span><br><span class="line">        $deleteData = Searches::where(<span class="string">'id'</span>, $deleteId)-&gt;delete();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> response([<span class="string">'message'</span> =&gt; <span class="string">'Clear all history records'</span>]);</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> LearnAndLive </tag>
+            
+            <tag> Laravel </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>安裝Guzzle時出現錯誤 [報錯] Your requirements could not be resolved to an installable set of packages.</title>
+      <link href="/charleen-xu.github.io/2020/01/15/%E5%AE%89%E8%A3%9DGuzzle%E6%99%82%E5%87%BA%E7%8F%BE%E9%8C%AF%E8%AA%A4/"/>
+      <url>/charleen-xu.github.io/2020/01/15/%E5%AE%89%E8%A3%9DGuzzle%E6%99%82%E5%87%BA%E7%8F%BE%E9%8C%AF%E8%AA%A4/</url>
+      
+        <content type="html"><![CDATA[<h3 id="安裝Guzzle時出現錯誤"><a href="#安裝Guzzle時出現錯誤" class="headerlink" title="安裝Guzzle時出現錯誤"></a>安裝Guzzle時出現錯誤</h3><h3 id="官網提供的指令：失敗"><a href="#官網提供的指令：失敗" class="headerlink" title="官網提供的指令：失敗"></a>官網提供的指令：失敗</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> composer require guzzle/guzzle</span></span><br></pre></td></tr></table></figure><p><img src="https://i.imgur.com/P5cvpAy.png" alt=""></p><h3 id="網上的解決方法：成功"><a href="#網上的解決方法：成功" class="headerlink" title="網上的解決方法：成功"></a>網上的解決方法：成功</h3><ul><li><a href="https://stackoverflow.com/questions/30822897/cant-install-guzzlehttp-for-laravel" target="_blank" rel="noopener">Can’t install guzzlehttp for Laravel</a></li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> composer require <span class="string">"guzzlehttp/guzzle"</span></span></span><br></pre></td></tr></table></figure><p><img src="https://i.imgur.com/QdkEhwz.png" alt=""></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> guzzle </tag>
+            
+            <tag> 報錯 </tag>
+            
+            <tag> laravel </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo裝起來！</title>
+      <link href="/charleen-xu.github.io/2019/12/25/Hexo%E8%A3%9D%E8%B5%B7%E4%BE%86%EF%BC%81/"/>
+      <url>/charleen-xu.github.io/2019/12/25/Hexo%E8%A3%9D%E8%B5%B7%E4%BE%86%EF%BC%81/</url>
+      
+        <content type="html"><![CDATA[<h2 id="環境配置："><a href="#環境配置：" class="headerlink" title="環境配置："></a>環境配置：</h2><h3 id="安裝Node-js"><a href="#安裝Node-js" class="headerlink" title="安裝Node.js"></a>安裝Node.js</h3><p>筆者在安裝來源為Node.js<a href="https://nodejs.org/en/" target="_blank" rel="noopener">官網</a>，嘗試好幾次仍然跳出錯誤。</p><p>依照Hexo官網的指示，輸入下列指令即可</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash</span><br></pre></td></tr></table></figure><a id="more"></a>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install node</span><br></pre></td></tr></table></figure><p>至於為什麼用nvm，可以查看這篇<a href="https://www.onejar99.com/nvm-install-for-unix-like/" target="_blank" rel="noopener">用nvm install node 安裝Node.js</a></p><h3 id="安裝Hexo-Git"><a href="#安裝Hexo-Git" class="headerlink" title="安裝Hexo Git"></a>安裝Hexo Git</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure><p>如果此時報錯提示為<strong>gyp: No Xcode or CLT version detected!(未檢測到Xcode或CLT版本)</strong></p><p>就筆者的當時的處理方式有二：</p><ul><li><p>首先是檢查MacOS是否更新到最新版本，但更新完後輸入上面的指令依然報錯。</p></li><li><p>第二是我原先沒有安裝Xcode，但安裝後又顯示上述報錯，這不是很奇怪？搜尋了一下發現有蠻多人面臨相同問題，大多數的解決方式為<code>sudo xcode-select --install</code>，<a href="https://juejin.im/post/5c73986de51d450dfc6f30e8" target="_blank" rel="noopener">這篇</a>提到可能是Mac升級後，缺了xcode 的CLI 工具，但我輸入這個指令還是有報錯的提示。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[報錯]xcode-select: error: command line tools are already installed, use &quot;Software Update&quot; to install updates</span><br></pre></td></tr></table></figure><p>最後是依據<a href="https://stackoverflow.com/questions/34617452/how-to-update-xcode-from-command-line" target="_blank" rel="noopener">這篇</a>執行<code>sudo rm -rf /Library/Developer/CommandLineTools</code>，移除後<code>xcode-select --install</code>重新執行就成功了。</p></li></ul><p><strong>報錯解決後，重新執行</strong><code>npm install hexo-deployer-git --save</code></p><h3 id="安裝Hexo"><a href="#安裝Hexo" class="headerlink" title="安裝Hexo"></a>安裝Hexo</h3><ul><li><code>npm install hexo-cli -g</code> 或 <code>sudo npm install -g hexo-cli</code></li><li><code>hexo init [部落格名稱]</code></li><li><code>cd [部落格名稱]</code>  # 移至剛創建的資料夾</li><li><code>npm install</code>        # 安裝相關套件</li></ul><h3 id="將Hexo配置到Github上"><a href="#將Hexo配置到Github上" class="headerlink" title="將Hexo配置到Github上"></a>將Hexo配置到Github上</h3><p>登入Github新增一個Repositories，名稱必須為<code>Github帳號名.github.io</code></p><p>回到專案文件夾，點開全域配置文件_config.yml，將文件最下方原先空白的deploy，修改如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy: </span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repository: https://github.com/charleen-xu/charleen-xu.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure><h5 id="提醒：冒號後一定要空格！"><a href="#提醒：冒號後一定要空格！" class="headerlink" title="提醒：冒號後一定要空格！"></a>提醒：冒號後一定要空格！</h5><blockquote><p>不確定repository的url？到Github看看<br><img src="https://i.imgur.com/RAjPqyx.png" alt=""></p></blockquote><hr><h4 id="產生靜態檔案-generate"><a href="#產生靜態檔案-generate" class="headerlink" title="產生靜態檔案 generate"></a>產生靜態檔案 generate</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g  # generate</span><br></pre></td></tr></table></figure><p>配置完成後的文章更新方式，參考<a href="https://winney07.github.io/2018/08/02/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E5%8F%91%E5%B8%83%E6%96%87%E7%AB%A0/" target="_blank" rel="noopener">在Hexo博客中发布文章</a></p><h4 id="新增Hexo文章"><a href="#新增Hexo文章" class="headerlink" title="新增Hexo文章"></a>新增Hexo文章</h4><blockquote><p>路徑：專案文件夾/source/_posts</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new 文章名稱</span><br></pre></td></tr></table></figure><p>打開新增該文件， 使用Markdown語法編輯內文</p><h5 id="範例："><a href="#範例：" class="headerlink" title="範例："></a>範例：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章標題</span><br><span class="line">date: 自動產生日期與時間</span><br><span class="line">tags: 自定義標籤</span><br><span class="line">---</span><br><span class="line">## 內容標題</span><br><span class="line">內文</span><br><span class="line"></span><br><span class="line">&lt;!--more--&gt;  #頁面上顯示Readmore</span><br></pre></td></tr></table></figure><h4 id="本地測試，啟動server"><a href="#本地測試，啟動server" class="headerlink" title="本地測試，啟動server"></a>本地測試，啟動server</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s  # server</span><br></pre></td></tr></table></figure><p>查看文章與內容是否成功建立，預設是 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a></p><p>如果出現：<strong>Port 4000 has been used. Try other port instead.</strong><br>開其他的port：<code>hexo server -p 5000</code>即可</p><p><img src="https://i.imgur.com/B5YtGFY.png" alt=""></p><h4 id="部署網站"><a href="#部署網站" class="headerlink" title="部署網站"></a>部署網站</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d   #deploy</span><br></pre></td></tr></table></figure><p>如果此時你發現報錯，可能是配置文件的空格或註解所導致</p><ul><li><a href="https://www.zhihu.com/question/29437235" target="_blank" rel="noopener">hexo deploy不能用？</a></li><li><a href="https://loesspie.com/2018/02/27/problems-useing-hexo/" target="_blank" rel="noopener">使用hexo时遇到的问题</a></li></ul><p>完成後進到你自己的網站看看 <a href="https://github名稱.github.io/" target="_blank" rel="noopener">https://github名稱.github.io/</a> </p><hr><h2 id="使用主題Next"><a href="#使用主題Next" class="headerlink" title="使用主題Next"></a>使用主題Next</h2><p>參考<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">Next官方網站</a></p><ul><li><p>進到文件 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd 你的Hexo文件</span><br></pre></td></tr></table></figure></li><li><p>clone你選擇的主題</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;iissnan&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure></li><li><p>在全域配置文件將預設主題改為Next</p><blockquote><p>路徑：文件夾/_config.yml</p></blockquote></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: https:&#x2F;&#x2F;hexo.io&#x2F;plugins&#x2F;</span><br><span class="line">## Themes: https:&#x2F;&#x2F;hexo.io&#x2F;themes&#x2F;</span><br><span class="line">theme: next</span><br></pre></td></tr></table></figure><ul><li>主題可選擇想要的外觀Scheme，並將註解(#)移除(擇一不能重複)<blockquote><p>路徑：專案文件夾/themes/next/_config.yml</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Schemes</span><br><span class="line">scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">#scheme: Pisces</span><br><span class="line">#scheme: Gemini</span><br></pre></td></tr></table></figure></li></ul><p>重新啟動Server :<code>hexo s</code></p><p><strong>完成！</strong></p><p>參考來源：</p><ul><li><a href="https://hexo.io/zh-tw/docs/commands" target="_blank" rel="noopener">Hexo文件</a></li><li><a href="https://medium.com/@bebebobohaha/%E4%BD%BF%E7%94%A8-hexo-gitpage-%E6%90%AD%E5%BB%BA%E5%80%8B%E4%BA%BA-blog-5c6ed52f23db" target="_blank" rel="noopener">如何搭建個人 Blog 使用 Hexo + Gitpage</a></li><li><a href="https://yaoandy107.github.io/hexo-tutorial/" target="_blank" rel="noopener">Hexo+GitHub，新手也可以快速建立部落格</a></li><li><a href="https://gojun.me/2019/06/12/hello-blog/" target="_blank" rel="noopener">欢迎来到我的新博客</a></li><li><a href="https://liuchang.men/2019/03/20/%E8%BF%81%E7%A7%BB%E5%8D%9A%E5%AE%A2%E5%88%B0Hexo(NexT%E4%B8%BB%E9%A2%98)%20+%20GitHub%20Pages/" target="_blank" rel="noopener">遷移博客到Hexo(NexT主題) + GitHub Pages</a></li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>macOS安裝mysql碰到的版本安裝問題</title>
+      <link href="/charleen-xu.github.io/2019/12/02/macOS%E5%AE%89%E8%A3%9Dmysql%E7%A2%B0%E5%88%B0%E7%9A%84%E7%89%88%E6%9C%AC%E5%AE%89%E8%A3%9D%E5%95%8F%E9%A1%8C/"/>
+      <url>/charleen-xu.github.io/2019/12/02/macOS%E5%AE%89%E8%A3%9Dmysql%E7%A2%B0%E5%88%B0%E7%9A%84%E7%89%88%E6%9C%AC%E5%AE%89%E8%A3%9D%E5%95%8F%E9%A1%8C/</url>
+      
+        <content type="html"><![CDATA[<p>筆者從Ubuntu跳到macOS後遇到，沒想到版本問題這麼麻煩。<br>結論就是最好是一開始就先把MacOS內建的5.7版本刪除，至少就不會有衝突的問題＠＠</p><a id="more"></a><h3 id="檢查問題"><a href="#檢查問題" class="headerlink" title="檢查問題"></a>檢查問題</h3><ul><li>刪除原本衝突的內建mysql版本–(MacOS內建5.7，用homebrew insatll mysql版本為8.0)</li><li>執行php artisan migrate顯示下列報錯：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Illuminate\Database\QueryException  : SQLSTATE[HY000] [1045] Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password: NO) (SQL: select * from information_schema.tables where table_schema &#x3D; test and table_name &#x3D; migrations and table_type &#x3D; &#39;BASE TABLE&#39;)</span><br><span class="line"></span><br><span class="line"> at &#x2F;Users&#x2F;apple&#x2F;BackGarden&#x2F;vendor&#x2F;laravel&#x2F;framework&#x2F;src&#x2F;Illuminate&#x2F;Database&#x2F;Connection.php:665</span><br><span class="line">   661|         &#x2F;&#x2F; If an exception occurs when attempting to run a query, we&#39;ll format the error</span><br><span class="line">   662|         &#x2F;&#x2F; message to include the bindings with SQL, which will make this exception a</span><br><span class="line">   663|         &#x2F;&#x2F; lot more helpful to the developer instead of just the database&#39;s errors.</span><br><span class="line">   664|         catch (Exception $e) &#123;</span><br><span class="line"> &gt; 665|             throw new QueryException(</span><br><span class="line">   666|                 $query, $this-&gt;prepareBindings($bindings), $e</span><br><span class="line">   667|             );</span><br><span class="line">   668|         &#125;</span><br><span class="line">   669| </span><br><span class="line"></span><br><span class="line"> Exception trace:</span><br><span class="line"></span><br><span class="line"> 1   PDOException::(&quot;SQLSTATE[HY000] [1045] Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password: NO)&quot;)</span><br><span class="line">     &#x2F;Users&#x2F;apple&#x2F;BackGarden&#x2F;vendor&#x2F;laravel&#x2F;framework&#x2F;src&#x2F;Illuminate&#x2F;Database&#x2F;Connectors&#x2F;Connector.php:70</span><br><span class="line"></span><br><span class="line"> 2   PDO::__construct(&quot;mysql:host&#x3D;127.0.0.1;port&#x3D;3306;dbname&#x3D;test&quot;, &quot;root&quot;, &quot;&quot;, [])</span><br><span class="line">     &#x2F;Users&#x2F;apple&#x2F;BackGarden&#x2F;vendor&#x2F;laravel&#x2F;framework&#x2F;src&#x2F;Illuminate&#x2F;Database&#x2F;Connectors&#x2F;Connector.php:70</span><br><span class="line"></span><br><span class="line"> Please use the argument -v to see more details.</span><br></pre></td></tr></table></figure></li></ul><h3 id="為了確定連線問題，新建一個php檔連線"><a href="#為了確定連線問題，新建一個php檔連線" class="headerlink" title="為了確定連線問題，新建一個php檔連線"></a>為了確定連線問題，新建一個php檔連線</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">111.php</span><br><span class="line">&lt;?php</span><br><span class="line">$servername &#x3D; &quot;localhost&quot;;</span><br><span class="line">$username &#x3D; &quot;username&quot;;</span><br><span class="line">$password &#x3D; &quot;password&quot;;</span><br><span class="line">&#x2F;&#x2F; Create connection</span><br><span class="line">$conn &#x3D; new mysqli($servername, $username, $password);</span><br><span class="line">&#x2F;&#x2F; Check connection</span><br><span class="line">if ($conn-&gt;connect_error) &#123;</span><br><span class="line">    die(&quot;Connection failed: &quot; . $conn-&gt;connect_error);</span><br><span class="line">&#125;</span><br><span class="line">echo &quot;Connected successfully&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure><p>執行php 111.php<br>顯示：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Charleen@CharleendeMacBook-Pro BackGarden % php ttt.php</span><br><span class="line">PHP Warning:  mysqli::__construct(): Unexpected server response while doing caching_sha2 auth: 109 in &#x2F;Users&#x2F;apple&#x2F;BackGarden&#x2F;ttt.php on line 6</span><br><span class="line"></span><br><span class="line">Warning: mysqli::__construct(): Unexpected server response while doing caching_sha2 auth: 109 in &#x2F;Users&#x2F;apple&#x2F;BackGarden&#x2F;ttt.php on line 6</span><br><span class="line"></span><br><span class="line">關鍵：Unexpected server response while doing caching_sha2 auth</span><br></pre></td></tr></table></figure><h3 id="在mysql輸入show-variables-like-‘default-authentication-plugin"><a href="#在mysql輸入show-variables-like-‘default-authentication-plugin" class="headerlink" title="在mysql輸入show variables like ‘default_authentication_plugin;"></a>在mysql輸入show variables like ‘default_authentication_plugin;</h3><p>發現<code>caching_sha2_password</code>，為<strong>mysql8.0後出現的身份驗證插件</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+-------------------------------+-----------------------+</span><br><span class="line">| Variable_name                 | Value                 |</span><br><span class="line">+-------------------------------+-----------------------+</span><br><span class="line">| default_authentication_plugin | caching_sha2_password |</span><br><span class="line">+-------------------------------+-----------------------+</span><br></pre></td></tr></table></figure><p>在mysql輸入<code>ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;password&#39;;</code></p><blockquote><p>這裡的password我改成0000</p></blockquote><p>==mysql8的加密方式Laravel不支援(請見來源2)==，導致migrate不成功，必須更改回<code>mysql_native_password</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+-------------------------------+-----------------------+</span><br><span class="line">| Variable_name                 | Value                 |</span><br><span class="line">+-------------------------------+-----------------------+</span><br><span class="line">| default_authentication_plugin | mysql_native_password |</span><br><span class="line">+-------------------------------+-----------------------+</span><br></pre></td></tr></table></figure><h3 id="重啟mysql-server-restart"><a href="#重啟mysql-server-restart" class="headerlink" title="重啟mysql.server restart"></a>重啟<code>mysql.server restart</code></h3><p>確認database connection狀態是否OK，到phpstrom執行<code>php artisan migrate</code></p><p>success!</p><hr><p>參考來源:</p><ol><li>Sarah經驗傳授</li><li>. <a href="https://laracasts.com/discuss/channels/laravel/caching-sha2-password-error-when-running-php-artisan-migrate" target="_blank" rel="noopener">[caching_sha2_password] error when running php artisan migrate</a></li><li><a href="https://1c7.me/mysql-8-connect-error-2018/" target="_blank" rel="noopener">（解决方法）MySQL 8 + macOS 错误：Authentication plugin ‘caching_sha2_password’ cannot be loaded</a></li><li><a href="https://www.twblogs.net/a/5d091671bd9eee1e5c81325c" target="_blank" rel="noopener">Mac下Mysql：Authentication plugin ‘caching_sha2_password’ cannot be loaded</a></li><li><a href="https://parkerro.tw/mysql-8-0-client-problem/" target="_blank" rel="noopener">MySQL 8.0 Client 連線問題</a></li><li><a href="https://www.itread01.com/content/1531994533.html" target="_blank" rel="noopener">MySQL8.0新特性——默認使用caching_sha2_password作為身份驗證插件</a></li></ol>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> MacOS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
 </search>
