@@ -668,4 +668,20 @@
         <tag>JavaScript</tag>
       </tags>
   </entry>
+  <entry>
+    <title>修改Next頁碼與footer位置</title>
+    <url>/charleen-xu.github.io/2020/09/22/%E4%BF%AE%E6%94%B9Next%E9%A0%81%E7%A2%BC%E8%88%87footer%E4%BD%8D%E7%BD%AE/</url>
+    <content><![CDATA[<p>之前沒特別注意頁面底部偏右，決定今天來改一改</p>
+<p>修改 css 文件，位置：blog/public/css/main.css</p>
+<p>用Chrome devtools 檢查，將text-align: center (原本是left)</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.pagination</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">120px</span> <span class="number">0</span> <span class="number">0</span>;</span><br><span class="line">  text-align: center; //原本是left</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">---</span></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.footer-inner</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://i.imgur.com/UnB0UYH.png" alt=""></p>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
 </search>
