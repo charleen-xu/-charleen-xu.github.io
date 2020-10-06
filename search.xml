@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>hexo出現以下FatalMessage</title>
+      <link href="/charleen-xu.github.io/2020/08/12/hexo%E5%87%BA%E7%8F%BE%E4%BB%A5%E4%B8%8BFatalMessage/"/>
+      <url>/charleen-xu.github.io/2020/08/12/hexo%E5%87%BA%E7%8F%BE%E4%BB%A5%E4%B8%8BFatalMessage/</url>
+      
+        <content type="html"><![CDATA[<p>【Hexo】TypeError [ERR_INVALID_ARG_TYPE]: The “mode” argument must be integer. Received an instance of Object</p><ul><li>hexo d 後出現以下 FATAL message</li></ul><p><img src="https://i.imgur.com/zki06Bv.png" alt=""></p><ul><li>搜尋後發現可能原因有兩個<ul><li>hexo version 須更新</li><li>node 版本過高導致無法成功 deploy</li></ul></li></ul><a id="more"></a><ul><li>檢查 hexo version<ul><li>hexo : 4.1.1</li><li>node : 14.12.0</li></ul></li></ul><p><img src="https://i.imgur.com/4AAWKxY.png" alt=""></p><ul><li>先更新 hexo 版本至 4.2.1<ul><li>npm update</li></ul></li></ul><p><img src="https://i.imgur.com/DddjlDj.png" alt=""></p><p><img src="https://i.imgur.com/POWhNPc.png" alt=""></p><p><code>hexo d</code> 依舊報錯</p><ul><li>降低 node 版本至 12</li></ul><p><img src="https://i.imgur.com/kbOSMxZ.png" alt=""></p><p>node -v 從 14.12.0 降到 12.18.4</p><p>執行 hexo d</p><p>成功!</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> -hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>HTML網頁結構</title>
       <link href="/charleen-xu.github.io/2020/08/06/HTML%E7%B6%B2%E9%A0%81%E7%B5%90%E6%A7%8B/"/>
       <url>/charleen-xu.github.io/2020/08/06/HTML%E7%B6%B2%E9%A0%81%E7%B5%90%E6%A7%8B/</url>
