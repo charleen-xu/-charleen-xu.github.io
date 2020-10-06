@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>datalist自動過濾選項 &amp;&amp; input type</title>
+      <link href="/charleen-xu.github.io/2020/08/20/Form2-0/"/>
+      <url>/charleen-xu.github.io/2020/08/20/Form2-0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Form-2-0"><a href="#Form-2-0" class="headerlink" title="Form 2.0"></a>Form 2.0</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;form&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;input list&#x3D;&quot;mylists&quot;&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;datalist id&#x3D;&quot;mylists&quot;&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;option value&#x3D;&quot;IE&quot;&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;Firefox&quot;&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;Google Chrome&quot;&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;Safari&quot;&gt;  </span><br><span class="line">  </span><br><span class="line">  &lt;&#x2F;datalist&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;input type&#x3D;&quot;color&quot; name&#x3D;&quot;color&quot;&gt; </span><br><span class="line">  &#x2F;&#x2F;顏色選擇器</span><br><span class="line">  </span><br><span class="line">  &lt;input type&#x3D;&quot;date&quot; name&#x3D;&quot;day&quot;&gt; </span><br><span class="line">  &#x2F;&#x2F;日歷選擇</span><br><span class="line">  </span><br><span class="line">  &lt;input type&#x3D;&quot;number&quot; max&#x3D;&quot;3&quot;&gt; </span><br><span class="line">  &#x2F;&#x2F;數字選擇</span><br><span class="line">  </span><br><span class="line">  &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;firstname&quot; value&#x3D;&quot;Tom&quot;&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;firstname&quot; value&#x3D;&quot;Tom&quot; readonly&gt; </span><br><span class="line">  &#x2F;&#x2F;可見Tom但無法修改（唯讀）</span><br><span class="line">  </span><br><span class="line">  &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;firstname&quot; value&#x3D;&quot;Tom&quot; disabled&gt; </span><br><span class="line">  &#x2F;&#x2F;灰底且無法修改</span><br><span class="line">  </span><br><span class="line">  &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;firstname&quot; value&#x3D;&quot;Tom&quot; size&#x3D;&quot;10&quot;&gt; </span><br><span class="line">  &#x2F;&#x2F;定義輸入框大小</span><br><span class="line">  </span><br><span class="line">  &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;firstname&quot; value&#x3D;&quot;Tom&quot; maxlength&#x3D;&quot;3&quot;&gt;</span><br><span class="line">  &#x2F;&#x2F;限制輸入字數</span><br><span class="line">  </span><br><span class="line">&lt;&#x2F;form&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> HTML </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>hexo出現以下FatalMessage</title>
       <link href="/charleen-xu.github.io/2020/08/12/hexo%E5%87%BA%E7%8F%BE%E4%BB%A5%E4%B8%8BFatalMessage/"/>
       <url>/charleen-xu.github.io/2020/08/12/hexo%E5%87%BA%E7%8F%BE%E4%BB%A5%E4%B8%8BFatalMessage/</url>
@@ -14,7 +33,7 @@
       
         <tags>
             
-            <tag> -hexo </tag>
+            <tag> hexo </tag>
             
         </tags>
       
