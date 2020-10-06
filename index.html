@@ -301,6 +301,321 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://charleen-xu.github.io/charleen-xu.github.io/2020/09/16/JS%E5%AD%B8%E7%BF%92%E6%97%A5%E8%A8%98-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Charleen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/charleen-xu.github.io/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Charleen的學習雜記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/charleen-xu.github.io/2020/09/16/JS%E5%AD%B8%E7%BF%92%E6%97%A5%E8%A8%98-7/" itemprop="url">JS學習日記-7</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-09-16T15:54:43+08:00">
+                2020-09-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字數統計</span>
+                
+                <span title="字數統計">
+                  153
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">閱讀時長</span>
+                
+                <span title="閱讀時長">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="如何借用其他Object的method"><a href="#如何借用其他Object的method" class="headerlink" title="如何借用其他Object的method"></a>如何借用其他Object的method</h2><p>```javascript=<br>var person = {</p>
+<p>  firstName: ‘Lin’,<br>  lastName: ‘Xu’,<br>  fullName: function(){</p>
+<pre><code>console.log(this.firstName +&apos; &apos;+this.lastName);</code></pre><p>  }<br>}</p>
+<p>var ken = {<br>  firstName: ‘shuo’,<br>  lastName: ‘zhang’,<br>}</p>
+<p>person.fullName.call(ken);</p>
+<p>//output<br>“shuo zhang”</p>
+<hr>
+<p>var person = {</p>
+<p>  firstName: ‘Lin’,<br>  lastName: ‘Xu’,<br>  fullName: function(job1,job2){</p>
+<pre><code>console.log(this.firstName +&apos; &apos;+ this.lastName + &apos; is a &apos; +job1+ &apos; , and also is a &apos; +job2+&apos;.&apos;);</code></pre><p>  }<br>}</p>
+<p>var ken = {<br>  firstName: ‘shuo’,<br>  lastName: ‘zhang’,<br>}</p>
+<p>var may = {<br>  firstName: ‘gua’,<br>  lastName: ‘lu’<br>}</p>
+<p>person.fullName.call(ken,’job3’,’job4’);<br>person.fullName.bind(may,’job5’)(‘job6’);</p>
+<p>// object.借用的method名稱.call(object,’傳入參數1’,’傳入參數2’);<br>// object.借用的method名稱.bind(object,’傳入參數1’)(‘傳入參數2’);</p>
+<p>//output<br>“shuo zhang is a job3 , and also is a job4.”<br>“gua lu is a job5 , and also is a job6.”</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://charleen-xu.github.io/charleen-xu.github.io/2020/09/14/JS%E5%AD%B8%E7%BF%92%E6%97%A5%E8%A8%98-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Charleen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/charleen-xu.github.io/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Charleen的學習雜記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/charleen-xu.github.io/2020/09/14/JS%E5%AD%B8%E7%BF%92%E6%97%A5%E8%A8%98-6/" itemprop="url">JS學習日記-6</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-09-14T18:10:43+08:00">
+                2020-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字數統計</span>
+                
+                <span title="字數統計">
+                  74
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">閱讀時長</span>
+                
+                <span title="閱讀時長">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="49-function如何做function的返回值"><a href="#49-function如何做function的返回值" class="headerlink" title="49.function如何做function的返回值"></a>49.function如何做function的返回值</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHello</span>(<span class="params">job</span>)</span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(job ===<span class="string">'designer'</span>)&#123;</span><br><span class="line">      </span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'Hello '</span> + name + <span class="string">',you are a designer'</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'Hello '</span> + name + <span class="string">',you are a teacher'</span>);</span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//外部調用function-sayHello傳入參數，在匿名function直接返回結果</span></span><br><span class="line"><span class="comment">//--way1</span></span><br><span class="line"><span class="keyword">var</span> callFunc = sayHello(<span class="string">'teacher'</span>);</span><br><span class="line">callFunc(<span class="string">'Tommy'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//--way2</span></span><br><span class="line">sayHello(<span class="string">'teacher'</span>)(<span class="string">'hhh'</span>);</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://charleen-xu.github.io/charleen-xu.github.io/2020/09/12/JS%E5%AD%B8%E7%BF%92%E6%97%A5%E8%A8%98-5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1531,321 +1846,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://charleen-xu.github.io/charleen-xu.github.io/2020/02/20/%5B%E5%A0%B1%E9%8C%AF%5D%20The%20only%20supported%20ciphers%20are%20AES-128-CBC%20and%20AES-256-CBC%20with%20the%20correct%20key%20lengths./">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Charleen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/charleen-xu.github.io/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Charleen的學習雜記">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/charleen-xu.github.io/2020/02/20/%5B%E5%A0%B1%E9%8C%AF%5D%20The%20only%20supported%20ciphers%20are%20AES-128-CBC%20and%20AES-256-CBC%20with%20the%20correct%20key%20lengths./" itemprop="url">【報錯】The only supported ciphers are AES-128-CBC and AES-256-CBC with the correct key lengths.</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">發表於</span>
-              
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-02-20T14:23:54+08:00">
-                2020-02-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字數統計</span>
-                
-                <span title="字數統計">
-                  83
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">閱讀時長</span>
-                
-                <span title="閱讀時長">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="運行laravel後歡迎頁面出現報錯，頓時心慌，查了一下還好有解。"><a href="#運行laravel後歡迎頁面出現報錯，頓時心慌，查了一下還好有解。" class="headerlink" title="運行laravel後歡迎頁面出現報錯，頓時心慌，查了一下還好有解。"></a>運行laravel後歡迎頁面出現報錯，頓時心慌，查了一下還好有解。</h3><p><img src="https://i.imgur.com/T7M3isw.png" alt=""></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/charleen-xu.github.io/2020/02/20/%5B%E5%A0%B1%E9%8C%AF%5D%20The%20only%20supported%20ciphers%20are%20AES-128-CBC%20and%20AES-256-CBC%20with%20the%20correct%20key%20lengths./#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://charleen-xu.github.io/charleen-xu.github.io/2020/02/15/%E8%A7%A3%E6%B1%BALaravel%20CORS%E7%9A%84%E6%96%B9%E6%B3%95--laravel-cors(%E8%88%8A%E7%89%88%E5%B7%B2%E4%B8%8D%E9%81%A9%E7%94%A8%EF%BC%8C%E9%96%8B%E7%99%BC%E8%80%85%E5%B7%B2%E6%9B%B4%E6%96%B0%E8%87%B31.0.1)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Charleen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/charleen-xu.github.io/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Charleen的學習雜記">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/charleen-xu.github.io/2020/02/15/%E8%A7%A3%E6%B1%BALaravel%20CORS%E7%9A%84%E6%96%B9%E6%B3%95--laravel-cors(%E8%88%8A%E7%89%88%E5%B7%B2%E4%B8%8D%E9%81%A9%E7%94%A8%EF%BC%8C%E9%96%8B%E7%99%BC%E8%80%85%E5%B7%B2%E6%9B%B4%E6%96%B0%E8%87%B31.0.1)/" itemprop="url">解決Laravel CORS的方法--laravel-cors(舊版已不適用，開發者已更新至1.0.1)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">發表於</span>
-              
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-02-15T09:20:19+08:00">
-                2020-02-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字數統計</span>
-                
-                <span title="字數統計">
-                  590
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">閱讀時長</span>
-                
-                <span title="閱讀時長">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="舊版-不要使用"><a href="#舊版-不要使用" class="headerlink" title="舊版(不要使用)"></a>舊版(不要使用)</h3><p><a href="https://github.com/barryvdh/laravel-cors" target="_blank" rel="noopener">https://github.com/barryvdh/laravel-cors</a></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/charleen-xu.github.io/2020/02/15/%E8%A7%A3%E6%B1%BALaravel%20CORS%E7%9A%84%E6%96%B9%E6%B3%95--laravel-cors(%E8%88%8A%E7%89%88%E5%B7%B2%E4%B8%8D%E9%81%A9%E7%94%A8%EF%BC%8C%E9%96%8B%E7%99%BC%E8%80%85%E5%B7%B2%E6%9B%B4%E6%96%B0%E8%87%B31.0.1)/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/charleen-xu.github.io/page/2/">2</a><a class="extend next" rel="next" href="/charleen-xu.github.io/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/charleen-xu.github.io/page/2/">2</a><a class="page-number" href="/charleen-xu.github.io/page/3/">3</a><a class="extend next" rel="next" href="/charleen-xu.github.io/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -1891,7 +1896,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/charleen-xu.github.io/archives/">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">文章</span>
               </a>
             </div>
