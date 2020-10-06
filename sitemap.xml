@@ -109,20 +109,6 @@
 
   
   <url>
-    <loc>https://charleen-xu.github.io/tags/HTML/</loc>
-    <lastmod>2020-10-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://charleen-xu.github.io/tags/Hexo/</loc>
-    <lastmod>2020-10-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://charleen-xu.github.io/tags/Laravel/</loc>
     <lastmod>2020-10-06</lastmod>
     <changefreq>daily</changefreq>
@@ -137,13 +123,6 @@
   </url>
   
   <url>
-    <loc>https://charleen-xu.github.io/tags/LearnAndLive/</loc>
-    <lastmod>2020-10-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://charleen-xu.github.io/tags/laravel/</loc>
     <lastmod>2020-10-06</lastmod>
     <changefreq>daily</changefreq>
@@ -152,6 +131,13 @@
   
   <url>
     <loc>https://charleen-xu.github.io/tags/%E5%A0%B1%E9%8C%AF/</loc>
+    <lastmod>2020-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://charleen-xu.github.io/tags/LearnAndLive/</loc>
     <lastmod>2020-10-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -201,6 +187,20 @@
   
   <url>
     <loc>https://charleen-xu.github.io/tags/CORS/</loc>
+    <lastmod>2020-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://charleen-xu.github.io/tags/Hexo/</loc>
+    <lastmod>2020-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://charleen-xu.github.io/tags/HTML/</loc>
     <lastmod>2020-10-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
